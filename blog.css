@@ -71,10 +71,92 @@ nav {
   text-decoration: none;
   color: black;
 }
+/*.................................titre principal + Introduction.................*/
+h1,
+.introduction {
+  font-family: "Anonymous Pro", monospace;
+}
+
+h1 {
+  color: #808080;
+  text-align: center;
+  margin-top: 350px;
+}
+
+.introduction {
+  width: 650px;
+  height: 460px;
+  background-color: #1448eb;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  border: 10px double #808080;
+  top: 20px;
+  margin: 0 auto 50px;
+  padding: 20px;
+}
+
+.introduction p {
+  font-size: 16px;
+}
+
+/*.................................Section voitures......................*/
+
+.voiture1,
+.voiture3,
+.voiture5 {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 20px;
+}
+
+.voiture2,
+.voiture4,
+.voiture6 {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+
+.voiture {
+  width: 500px;
+  height: 300px;
+  margin-right: 20px;
+}
+
+.voiture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.description {
+  width: calc(50% - 20px);
+  height: 300px;
+  background-color: #666666;
+  padding: 20px;
+  color: white;
+  text-align: center;
+  margin-bottom: 20px; /* Espace en bas */
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 10px; /* Espace sous le titre */
+}
+
+.description p {
+  font-size: 14px;
+}
 
 /*Pour smartphone*/
 @media only screen and (max-width: 767px) {
-  nav {
+  nav img.fond-ecran {
     height: 80px;
   }
 }
