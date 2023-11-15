@@ -1,0 +1,80 @@
+/*...................................base.................................*/
+
+body {
+  background-color: black;
+}
+
+body,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+/*............................barre navigation............................*/
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.plate-number {
+  width: 500px;
+  height: 50px;
+  background-color: white;
+  position: absolute;
+  top: 230px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Rectangles à chaque extrémité */
+.rectangle {
+  width: 25px;
+  height: 50px;
+}
+
+/* Images à l'intérieur des rectangles */
+.rectangle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Liste de liens */
+.links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* Styles des liens */
+.links li {
+  margin-right: 20px; /* Espace entre les liens */
+}
+
+/* Ajoute un tiret entre les 3 liens*/
+.links li:not(:last-child)::after {
+  content: " - ";
+  margin-left: 5px; /* Espace entre le tiret et le lien suivant */
+}
+
+.links a {
+  font-size: 32px;
+  text-decoration: none;
+  color: black;
+}
+
+/*Pour smartphone*/
+@media only screen and (max-width: 767px) {
+  nav {
+    height: 80px;
+  }
+}
