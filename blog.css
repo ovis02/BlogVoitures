@@ -74,7 +74,8 @@ nav {
 /*.................................titre principal + Introduction.................*/
 h1,
 .introduction {
-  font-family: "Anonymous Pro", monospace;
+  font-family: "Libre Franklin", sans-serif;
+  font-weight: bold;
 }
 
 h1 {
@@ -85,7 +86,7 @@ h1 {
 
 .introduction {
   width: 650px;
-  height: 460px;
+  height: 500px;
   background-color: #1448eb;
   color: white;
   display: flex;
@@ -100,7 +101,7 @@ h1 {
 }
 
 .introduction p {
-  font-size: 16px;
+  font-size: 20px;
 }
 
 /*.................................Section voitures......................*/
@@ -108,7 +109,7 @@ h1 {
 .voiture1,
 .voiture3,
 .voiture5 {
-  margin-top: 20px;
+  margin-top: 100px;
   display: flex;
   justify-content: flex-start;
   margin-left: 20px;
@@ -124,8 +125,8 @@ h1 {
 }
 
 .voiture {
-  width: 500px;
-  height: 300px;
+  max-width: 500px;
+  max-height: 300px;
   margin-right: 20px;
 }
 
@@ -133,30 +134,125 @@ h1 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  margin-bottom: 20px;
 }
 
 .description {
   width: calc(50% - 20px);
-  height: 300px;
+  height: auto;
   background-color: #666666;
-  padding: 20px;
+  padding: 10px;
   color: white;
   text-align: center;
-  margin-bottom: 20px; /* Espace en bas */
+  margin-bottom: 20px;
 }
 
 h2 {
-  font-size: 20px;
-  margin-bottom: 10px; /* Espace sous le titre */
+  margin-bottom: 10px;
 }
 
+h2,
 .description p {
-  font-size: 14px;
+  font-size: 20px;
+  font-family: "Libre Franklin", sans-serif;
+}
+/*.................................formulaire de vote........................*/
+.vote-section {
+  max-width: 800px;
+  height: auto;
+  background-color: #666666;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  margin: auto;
+  font-family: Arial, sans-serif;
+  margin-top: 60px;
+  margin-bottom: 30px;
+}
+
+.vote-options {
+  text-align: left;
+}
+/*Bouton pour formulaire de vote + commentaires*/
+.submit-btn {
+  margin-top: 20px;
+  background-color: #d9d9d9;
+  color: black;
+  border-radius: 5px;
+}
+
+/*.......................Section commentaire....................*/
+.comment-section {
+  max-width: 800px;
+  height: auto;
+  background-color: #666666;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  margin: auto;
+  font-family: Arial, sans-serif;
+  margin-bottom: 300px;
+}
+
+.comment-form {
+  text-align: left;
+}
+
+/*....................footer......................*/
+
+img[src="logos/sl_z_072523_61700_10.jpg"] {
+  position: relative;
+  bottom: 28px;
+}
+
+img[src="logos/20231012_072927_0000.png"] {
+  position: relative;
+  bottom: 17px;
+}
+
+.footer {
+  margin-top: 100px;
 }
 
 /*Pour smartphone*/
 @media only screen and (max-width: 767px) {
   nav img.fond-ecran {
     height: 80px;
+  }
+  /*..........................Introduction..................................*/
+  .introduction {
+    width: auto;
+    height: auto;
+  }
+  .introduction p {
+    font-size: 12px;
+  }
+  /*........................Section voitures................................*/
+  .voiture1,
+  .voiture2,
+  .voiture3,
+  .voiture4,
+  .voiture5,
+  .voiture6 {
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+
+  .voiture {
+    height: 150px;
+    width: 300px;
+    margin: auto;
+  }
+  .description {
+    width: 100%;
+    margin-top: 20px;
+  }
+  .description h2 {
+    font-size: 14px;
+  }
+
+  .description p {
+    font-size: 12px;
   }
 }

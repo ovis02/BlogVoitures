@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Comfortaa&family=Lexend+Mega&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Ingrid+Darling&family=Kameron&family=Libre+Franklin:wght@100&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="blog.css" />
@@ -65,28 +65,28 @@
         </p>
       </div>
     </main>
-
-    <div class="voiture1">
-      <article class="voiture">
-        <img src="images/skyline.jpeg" alt="Voiture 1" />
-      </article>
-      <article class="description">
-        <h2>Nissan Skyline GT-R 34</h2>
-        <p>
-          Nissan Skyline GT-R 34 La Nissan Skyline GT-R R34, née à la fin des
-          années 1990, est une voiture de sport japonaise qui a rapidement
-          conquis les cœurs des amateurs de voitures. Sous son capot, un moteur
-          turbo 2,6 litres offre une puissance impressionnante, tandis que sa
-          transmission intégrale assure une tenue de route exceptionnelle. Son
-          design, avec ses phares ronds caractéristiques, est devenu
-          emblématique, et son allure musclée témoigne de sa performance. À
-          l'intérieur, la R34 offre un mélange de confort et de technologies
-          avancées. C'est une voiture qui allie puissance, style intemporel et
-          maniabilité, en faisant une légende de l'histoire automobile.
-        </p>
-      </article>
-    </div>
     <section>
+      <div class="voiture1">
+        <article class="voiture">
+          <img src="images/skyline.jpeg" alt="Voiture 1" />
+        </article>
+        <article class="description">
+          <h2>Nissan Skyline GT-R 34</h2>
+          <p>
+            La Nissan Skyline GT-R R34, née à la fin des années 1990, est une
+            voiture de sport japonaise qui a rapidement conquis les cœurs des
+            amateurs de voitures. Sous son capot, un moteur turbo 2,6 litres
+            offre une puissance impressionnante, tandis que sa transmission
+            intégrale assure une tenue de route exceptionnelle. Son design, avec
+            ses phares ronds caractéristiques, est devenu emblématique, et son
+            allure musclée témoigne de sa performance. À l'intérieur, la R34
+            offre un mélange de confort et de technologies avancées. C'est une
+            voiture qui allie puissance, style intemporel et maniabilité, en
+            faisant une légende de l'histoire automobile.
+          </p>
+        </article>
+      </div>
+
       <div class="voiture2">
         <article class="voiture">
           <img src="images/supra.jpeg" alt="Voiture 2" />
@@ -184,7 +184,155 @@
         </article>
       </div>
     </section>
+    <!---------------------------vote-form----------------------------------->
+    <section>
+      <div class="container">
+        <div class="vote-section">
+          <h2>Quelle est votre voiture préférée ?</h2>
+          <form id="vote-form">
+            <div class="vote-options">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="vote"
+                  id="vote1"
+                  value="Nissan Skyline GT-R"
+                />
+                <label class="form-check-label" for="vote1"
+                  >Nissan Skyline GT-R</label
+                >
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="vote"
+                  id="vote2"
+                  value="Toyota Supra"
+                />
+                <label class="form-check-label" for="vote2">Toyota Supra</label>
+              </div>
 
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="vote"
+                  id="vote3"
+                  value="Mustang GT"
+                />
+                <label class="form-check-label" for="vote3">Mustang GT</label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="vote"
+                  id="vote4"
+                  value="Mitsubishi Lancer Evo"
+                />
+                <label class="form-check-label" for="vote4"
+                  >Mitsubishi Lancer Evo</label
+                >
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="vote"
+                  id="vote5"
+                  value="BMW M3"
+                />
+                <label class="form-check-label" for="vote5">BMW M3</label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="vote"
+                  id="vote6"
+                  value="Porsche 911"
+                />
+                <label class="form-check-label" for="vote6">Porsche 911</label>
+              </div>
+            </div>
+            <button type="submit" class="submit-btn">Valider</button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!---------------------------Comment-form----------------------------------->
+    <div class="comment-section">
+      <h2>Laisser un commentaire</h2>
+      <form id="comment-form" class="comment-form">
+        <div class="form-group">
+          <label for="name">Nom:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="Votre nom"
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Adresse de messagerie:</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Votre adresse email"
+          />
+        </div>
+        <div class="form-group">
+          <label for="comment">Commentaire:</label>
+          <textarea
+            class="form-control"
+            id="comment"
+            rows="4"
+            placeholder="Votre commentaire"
+          ></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Valider</button>
+      </form>
+    </div>
+    <!---------------------------footer----------------------------------->
+    <footer class="footer">
+      <div class="container">
+        <div class="col-12">
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-3 col-sm-1">
+              <img
+                src="logos/instagram.png"
+                alt="Logo 1"
+                style="width: 60px; height: 60px"
+              />
+            </div>
+            <div class="col-md-3 col-sm-1">
+              <img
+                src="logos/facebook.png"
+                alt="Logo 2"
+                style="width: 60px; height: 60px"
+              />
+            </div>
+            <div class="col-md-3 col-sm-1">
+              <img
+                src="logos/sl_z_072523_61700_10.jpg"
+                alt="Logo 3"
+                style="width: 120px; height: 120px"
+              />
+            </div>
+            <div class="col-sm-1">
+              <img
+                src="logos/20231012_072927_0000.png"
+                alt="Logo 4"
+                style="width: 100px; height: 100px"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
