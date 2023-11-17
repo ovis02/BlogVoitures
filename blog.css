@@ -21,6 +21,10 @@ nav {
   justify-content: center;
 }
 
+nav img {
+  height: 300px;
+  width: 100%;
+}
 .plate-number {
   width: 500px;
   height: 50px;
@@ -71,6 +75,34 @@ nav {
   text-decoration: none;
   color: black;
 }
+/*...................Logoburger.....................................*/
+
+.burger-container,
+.texte-bienvenue {
+  display: none;
+}
+
+.vertical-navbar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 80%;
+  background-color: rgba(255, 255, 255, 0.8); /* Fond blanc transparent à 20% */
+  text-align: center;
+  z-index: 3;
+  display: flex;
+  flex-direction: column; /* Afficher les liens en colonnes */
+  align-items: center;
+  justify-content: center;
+}
+
+.vertical-navbar a {
+  color: black;
+  text-decoration: none;
+  font-size: 26px;
+  padding: 10px;
+}
 /*.................................titre principal + Introduction.................*/
 h1,
 .introduction {
@@ -112,7 +144,7 @@ h1 {
   margin-top: 100px;
   display: flex;
   justify-content: flex-start;
-  margin-left: 20px;
+  margin-left: 10%;
 }
 
 .voiture2,
@@ -121,7 +153,7 @@ h1 {
   margin-top: 20px;
   display: flex;
   justify-content: flex-end;
-  margin-right: 20px;
+  margin-right: 10%;
 }
 
 .voiture {
@@ -138,7 +170,7 @@ h1 {
 }
 
 .description {
-  width: calc(50% - 20px);
+  max-width: 600px;
   height: auto;
   background-color: #666666;
   padding: 10px;
@@ -191,7 +223,7 @@ h2,
   text-align: center;
   margin: auto;
   font-family: Arial, sans-serif;
-  margin-bottom: 300px;
+  margin-bottom: 200px;
 }
 
 .comment-form {
@@ -200,29 +232,66 @@ h2,
 
 /*....................footer......................*/
 
-img[src="logos/sl_z_072523_61700_10.jpg"] {
-  position: relative;
-  bottom: 28px;
+footer {
+  margin-bottom: 20px;
 }
 
-img[src="logos/20231012_072927_0000.png"] {
-  position: relative;
-  bottom: 17px;
-}
-
-.footer {
-  margin-top: 100px;
+.footer img {
+  width: 50px;
+  height: 50px;
 }
 
 /*Pour smartphone*/
 @media only screen and (max-width: 767px) {
-  nav img.fond-ecran {
+  nav img {
     height: 80px;
+  }
+
+  .plate-number {
+    width: 150px;
+    height: 30px;
+    top: 80px;
+  }
+
+  /* Rectangles à chaque extrémité */
+  .rectangle {
+    width: 15px;
+    height: 30px;
+  }
+
+  .links {
+    display: none;
+  }
+
+  .texte-bienvenue {
+    display: block; /* Affiche le texte BIENVENUE */
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+
+  .burger-container {
+    display: block;
+  }
+
+  .burger-container {
+    position: fixed;
+    top: 130px;
+    right: 0;
+    margin: 10px;
+    z-index: 2;
+  }
+  .burger-container img {
+    width: 30px;
+    height: 30px;
   }
   /*..........................Introduction..................................*/
   .introduction {
     width: auto;
     height: auto;
+    margin: 10px;
+    margin-bottom: 50px;
   }
   .introduction p {
     font-size: 12px;
@@ -236,13 +305,13 @@ img[src="logos/20231012_072927_0000.png"] {
   .voiture6 {
     flex-direction: column;
     align-items: center;
-    margin: 20px;
+    margin: 10px;
   }
 
   .voiture {
     height: 150px;
     width: 300px;
-    margin: auto;
+    margin: 10px;
   }
   .description {
     width: 100%;
@@ -254,5 +323,18 @@ img[src="logos/20231012_072927_0000.png"] {
 
   .description p {
     font-size: 12px;
+  }
+  /*.......................Section commentaire....................*/
+  .comment-section {
+    margin-bottom: 50px;
+  }
+  /*....................footer......................*/
+  /*footer*/
+  .col-md-2.col-sm-1 {
+    width: auto;
+  }
+  .footer img {
+    width: 30px;
+    height: 30px;
   }
 }

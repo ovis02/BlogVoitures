@@ -21,12 +21,7 @@
   <body>
     <header>
       <nav>
-        <img
-          class="fond-ecran"
-          src="images/lightOff.png"
-          height="300px"
-          width="100%"
-        />
+        <img class="fond-ecran" src="images/lightOff.png" />
 
         <div class="plate-number">
           <div class="rectangle">
@@ -34,16 +29,63 @@
           </div>
 
           <ul class="links">
-            <li><a href="#">Accueil </a></li>
-            <li><a href="#">Voitures</a></li>
-            <li><a href="#">Vote</a></li>
+            <li>
+              <a
+                href="#intro"
+                onmouseover="allumerPhares()"
+                onmouseout="eteindrePhares()"
+                >Accueil</a
+              >
+            </li>
+            <li>
+              <a
+                href="#voitures"
+                onmouseover="allumerPhares()"
+                onmouseout="eteindrePhares()"
+                >Voitures</a
+              >
+            </li>
+            <li>
+              <a
+                href="#vote"
+                onmouseover="allumerPhares()"
+                onmouseout="eteindrePhares()"
+                >Vote</a
+              >
+            </li>
           </ul>
+          <div
+            class="texte-bienvenue"
+            onmouseover="allumerPhares()"
+            onmouseout="eteindrePhares()"
+          >
+            BIENVENUE
+          </div>
+
           <div class="rectangle">
             <img src="images/75.png" alt="Image 2" />
           </div>
         </div>
+        <div id="vertical-navbar" class="vertical-navbar">
+          <a href="#intro">Accueil</a>
+          <a href="#voitures">Voitures</a>
+          <a href="#vote">Vote</a>
+          <button id="close-button">Fermer</button>
+        </div>
+        <div class="burger-container">
+          <a href="#" id="logo-burger-button">
+            <img
+              id="logo-burger"
+              src="logos/burgerBlanc.png"
+              alt="logo-burger"
+              class="logo-burger"
+          /></a>
+        </div>
       </nav>
-      <h1>Légendes Automobiles: Six voitures qui ont marqué l'histoire</h1>
+
+      <h1 id="intro">
+        Légendes Automobiles: Six voitures qui ont marqué l'histoire
+      </h1>
     </header>
     <main>
       <div class="introduction">
@@ -71,7 +113,7 @@
           <img src="images/skyline.jpeg" alt="Voiture 1" />
         </article>
         <article class="description">
-          <h2>Nissan Skyline GT-R 34</h2>
+          <h2 id="voitures">Nissan Skyline GT-R 34</h2>
           <p>
             La Nissan Skyline GT-R R34, née à la fin des années 1990, est une
             voiture de sport japonaise qui a rapidement conquis les cœurs des
@@ -186,7 +228,7 @@
     </section>
     <!---------------------------vote-form----------------------------------->
     <section>
-      <div class="container">
+      <div class="container" id="vote">
         <div class="vote-section">
           <h2>Quelle est votre voiture préférée ?</h2>
           <form id="vote-form">
@@ -301,33 +343,20 @@
       <div class="container">
         <div class="col-12">
           <div class="row d-flex justify-content-center">
-            <div class="col-md-3 col-sm-1">
-              <img
-                src="logos/instagram.png"
-                alt="Logo 1"
-                style="width: 60px; height: 60px"
-              />
+            <div class="col-md-2 col-sm-1">
+              <img src="logos/facebook.png" alt="Logo 1" />
             </div>
-            <div class="col-md-3 col-sm-1">
-              <img
-                src="logos/facebook.png"
-                alt="Logo 2"
-                style="width: 60px; height: 60px"
-              />
+            <div class="col-md-2 col-sm-1">
+              <img src="logos/instagram.png" alt="Logo 2" />
             </div>
-            <div class="col-md-3 col-sm-1">
-              <img
-                src="logos/sl_z_072523_61700_10.jpg"
-                alt="Logo 3"
-                style="width: 120px; height: 120px"
-              />
+            <div class="col-md-2 col-sm-1">
+              <img src="logos/linkedin.png" alt="Logo 3" />
             </div>
-            <div class="col-sm-1">
-              <img
-                src="logos/20231012_072927_0000.png"
-                alt="Logo 4"
-                style="width: 100px; height: 100px"
-              />
+            <div class="col-md-2 col-sm-1">
+              <img src="logos/twitter.png" alt="Logo 4" />
+            </div>
+            <div class="col-md-2 col-sm-1">
+              <img src="logos/github.png" alt="Logo 5" />
             </div>
           </div>
         </div>
