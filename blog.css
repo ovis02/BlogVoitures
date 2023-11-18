@@ -160,6 +160,7 @@ h1 {
   max-width: 500px;
   max-height: 300px;
   margin-right: 20px;
+  transition: all 1s ease;
 }
 
 .voiture img {
@@ -168,7 +169,19 @@ h1 {
   object-fit: cover;
   margin-bottom: 20px;
 }
+/*------------------------------------------------------------------------------*/
+/* Style pour l'image agrandie */
+.voiture img.agrandie {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 3;
+  transition: all 1s ease;
+}
 
+/*------------------------------------------------------------*/
 .description {
   max-width: 600px;
   height: auto;

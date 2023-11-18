@@ -1,3 +1,13 @@
+//Allumer les phares ou eteindre
+
+function allumerPhares() {
+  document.querySelector(".fond-ecran").src = "images/lightOn.png";
+}
+
+function eteindrePhares() {
+  document.querySelector(".fond-ecran").src = "images/lightOff.png";
+}
+
 //Navigation bouton burger
 
 // Sélectionnez le logo burger bouton et la barre de navigation verticale
@@ -35,3 +45,8 @@ logoBurgerButton.addEventListener("click", () => {
     closeNavbar();
   }
 });
+
+//agrandir l'image
+function agrandirImage(image) {
+  image.classList.toggle("agrandie");
+}
