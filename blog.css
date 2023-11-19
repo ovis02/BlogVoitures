@@ -10,6 +10,25 @@ li {
   margin: 0;
   padding: 0;
 }
+/*............................admin......................................*/
+a.admin {
+  position: absolute;
+  color: white;
+  text-decoration: none;
+  top: 10px;
+  right: 10px;
+  z-index: 100;
+}
+
+.login-form {
+  display: none;
+  position: absolute;
+  background-color: white;
+  color: white;
+  top: 10px;
+  right: 80px;
+  z-index: 1109;
+}
 
 /*............................barre navigation............................*/
 nav {

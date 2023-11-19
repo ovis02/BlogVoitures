@@ -19,9 +19,18 @@
     <link rel="stylesheet" href="blog.css" />
   </head>
   <body>
+  <a href="#" class="admin">Admin</a>
+  <div class="login-form">
+    <form action="process_login.php" method="POST">
+      <input type="text" name="username" placeholder="Nom d'utilisateur">
+      <input type="password" name="password" placeholder="Mot de passe">
+      <button type="submit">Se connecter</button>
+    </form>
+  </div>
     <header>
-      <nav>
-        <img class="fond-ecran" src="images/lightOff.png" />
+     
+             <nav>
+              <img class="fond-ecran" src="images/lightOff.png" />
 
         <div class="plate-number">
           <div class="rectangle">
@@ -82,10 +91,18 @@
           /></a>
         </div>
       </nav>
-
+     
+<!--.............................Introduction..............................-->
       <h1 id="intro">
         Légendes Automobiles: Six voitures qui ont marqué l'histoire
       </h1>
+        <div class="login-form">
+    <form action="process_login.php" method="POST">
+      <input type="text" name="username" placeholder="Nom d'utilisateur">
+      <input type="password" name="password" placeholder="Mot de passe">
+      <button type="submit">Se connecter</button>
+    </form>
+  </div>
     </header>
     <main>
       <div class="introduction">
@@ -107,6 +124,7 @@
         </p>
       </div>
     </main>
+    <!--.......................................carSection.................................-->
     <section>
       <div class="voiture1">
         <article class="voiture">
@@ -255,7 +273,7 @@
       <div class="container" id="vote">
         <div class="vote-section">
           <h2>Quelle est votre voiture préférée ?</h2>
-          <form id="vote-form">
+          <form action="vote.php" method="post" id="vote-form">
             <div class="vote-options">
               <div class="form-check">
                 <input
@@ -324,20 +342,26 @@
               </div>
             </div>
             <button type="submit" class="submit-btn">Valider</button>
-          </form>
+            <div class="container" id="results">
+          <!--RESULTAT-->
+           </div>
         </div>
-      </div>
-    </section>
+      </form>
+     </div>
+   </div>
+</section>
+
     <!---------------------------Comment-form----------------------------------->
     <div class="comment-section">
       <h2>Laisser un commentaire</h2>
-      <form id="comment-form" class="comment-form">
+      <form action="comments.php" method="POST" id="comment-form" class="comment-form">
         <div class="form-group">
           <label for="name">Nom:</label>
           <input
             type="text"
             class="form-control"
             id="name"
+            name="name"
             placeholder="Votre nom"
           />
         </div>
@@ -347,6 +371,7 @@
             type="email"
             class="form-control"
             id="email"
+            name="email"
             placeholder="Votre adresse email"
           />
         </div>
@@ -355,6 +380,7 @@
           <textarea
             class="form-control"
             id="comment"
+            name="comment"
             rows="4"
             placeholder="Votre commentaire"
           ></textarea>

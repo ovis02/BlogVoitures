@@ -50,3 +50,41 @@ logoBurgerButton.addEventListener("click", () => {
 function agrandirImage(image) {
   image.classList.toggle("agrandie");
 }
+
+//Utilisation d'AJAX pour envoyer les données du formulaire sans recharger la page
+
+document
+  .getElementById("vote-form")
+  .addEventListener("submit", function (event) {
+    event.preventDefault(); // Empêche le comportement par défaut du formulaire
+
+    var formData = new FormData(this); // Récupération des données du formulaire
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          document.getElementById("results").innerHTML = xhr.responseText; // Affichage des résultats
+        } else {
+          console.error("Une erreur est survenue.");
+        }
+      }
+    };
+    xhr.open("POST", "vote.php", true);
+    xhr.send(formData);
+  });
+
+//Formulaire administrateur
+
+const adminLink = document.querySelector(".admin");
+const loginForm = document.querySelector(".login-form");
+
+adminLink.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  if (loginForm.style.display === "block") {
+    loginForm.style.display = "none"; // Cache le formulaire s'il est déjà affiché
+  } else {
+    loginForm.style.display = "block"; // Affiche le formulaire s'il est caché
+  }
+});
