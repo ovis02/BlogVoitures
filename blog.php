@@ -21,7 +21,7 @@
   <body>
   <a href="#" class="admin">Admin</a>
   <div class="login-form">
-    <form action="process_login.php" method="POST">
+    <form action="verificationAdmin.php" method="POST">
       <input type="text" name="username" placeholder="Nom d'utilisateur">
       <input type="password" name="password" placeholder="Mot de passe">
       <button type="submit">Se connecter</button>
@@ -36,7 +36,6 @@
           <div class="rectangle">
             <img src="images/france.png" alt="Image 1" />
           </div>
-
           <ul class="links">
             <li>
               <a
@@ -387,6 +386,38 @@
         </div>
         <button type="submit" class="submit-btn">Valider</button>
       </form>
+        <div class="approved-comments">
+    <?php
+      // Code pour récupérer et afficher les commentaires approuvés depuis la base de données
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $dbname = "BlogAuto";
+
+  $conn = new mysqli($servername, $username, $password, $dbname);
+
+  if ($conn->connect_error) {
+    die("La connexion a échoué : " . $conn->connect_error);
+  }
+
+  $sql = "SELECT * FROM Comments WHERE validated = 1"; // Récupérer les commentaires validés
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      echo "<div class=\"comment\">";
+      echo "<p><strong>Date :</strong> " . $row['created_at'] . "</p>"; // Afficher la date
+      echo "<p><strong>Nom :</strong> " . $row['name'] . "</p>";
+      echo "<p><strong>Commentaire :</strong> " . $row['comment'] . "</p>";
+      echo "</div>";
+    }
+  } else {
+    echo "Aucun commentaire approuvé.";
+  }
+
+  $conn->close();
+  ?>
+  </div>
     </div>
     <!---------------------------footer----------------------------------->
     <footer class="footer">

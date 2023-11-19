@@ -34,6 +34,12 @@
         echo "<input type='hidden' name='comment_id' value='" . $row['id'] . "'>";
         echo "<input type=\"submit\" name=\"validate\" value=\"Valider\" />";
         echo "</form>";
+        
+            // Ajout du bouton "Supprimer" avec un formulaire distinct pour chaque commentaire
+        echo "<form action=\"delete_comment.php\" method=\"POST\">";
+        echo "<input type='hidden' name='comment_id' value='" . $row['id'] . "'>";
+        echo "<button type=\"submit\" name=\"delete\">Supprimer</button>";
+        echo "</form>";
         echo "</div>";
       }
     } else {
