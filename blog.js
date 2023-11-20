@@ -51,7 +51,7 @@ function agrandirImage(image) {
   image.classList.toggle("agrandie");
 }
 
-//Utilisation d'AJAX pour envoyer les données du formulaire sans recharger la page
+//Utilisation d'AJAX pour envoyer les données du formulaire de vote sans recharger la page
 
 document
   .getElementById("vote-form")
