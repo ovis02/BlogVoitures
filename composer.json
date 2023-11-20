@@ -1,0 +1,10 @@
+{
+  "require": {
+    "php": "^7.4"
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "php -S 0.0.0.0:$PORT -t public/"
+    ]
+  }
+}
