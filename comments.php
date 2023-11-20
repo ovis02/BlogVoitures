@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -19,7 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO Comments (name, email, comment, validated) VALUES ('$name', '$email', '$comment', 0)";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Le commentaire a été ajouté avec succès !";
+        $_SESSION['message'] = "Le commentaire a été ajouté avec succès !";
+        header("Location: blog.php");
+        exit;
     } else {
         echo "Erreur : " . $sql . "<br>" . $conn->error;
     }

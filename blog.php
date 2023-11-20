@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -93,7 +96,7 @@
      
 <!--.............................Introduction..............................-->
       <h1 id="intro">
-        Légendes Automobiles: Six voitures qui ont marqué l'histoire
+        Légendes Automobiles:<br> Six voitures qui ont marqué l'Histoire
       </h1>
         <div class="login-form">
     <form action="process_login.php" method="POST">
@@ -343,7 +346,7 @@
             <button type="submit" class="submit-btn">Valider</button>
             <div class="container" id="results">
           <!--RESULTAT-->
-           </div>
+           </div>           
         </div>
       </form>
      </div>
@@ -362,6 +365,7 @@
             id="name"
             name="name"
             placeholder="Votre nom"
+            required  
           />
         </div>
         <div class="form-group">
@@ -372,6 +376,7 @@
             id="email"
             name="email"
             placeholder="Votre adresse email"
+            required 
           />
         </div>
         <div class="form-group">
@@ -382,10 +387,19 @@
             name="comment"
             rows="4"
             placeholder="Votre commentaire"
+            required 
           ></textarea>
         </div>
         <button type="submit" class="submit-btn">Valider</button>
       </form>
+       <!--Code pour la confirmation du commentaire envoyé-->
+         <?php if (isset($_SESSION['message'])): ?>
+        <div class="confirmation-message">
+            <?php echo $_SESSION['message']; ?>
+        </div>
+        <?php unset($_SESSION['message']); ?>
+    <?php endif; ?>
+    <!--------------------------------------------------------->
         <div class="approved-comments">
     <?php
       // Code pour récupérer et afficher les commentaires approuvés depuis la base de données

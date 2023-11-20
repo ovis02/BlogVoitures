@@ -1,7 +1,7 @@
 /*...................................base.................................*/
 
 body {
-  background-color: black;
+  background-color: #f2f2f2;
 }
 
 body,
@@ -94,7 +94,7 @@ nav img {
   text-decoration: none;
   color: black;
 }
-/*...................Logoburger.....................................*/
+/*...............................Logoburger.....................................*/
 
 .burger-container,
 .texte-bienvenue {
@@ -130,7 +130,7 @@ h1,
 }
 
 h1 {
-  color: #808080;
+  color: #ffa500;
   text-align: center;
   margin-top: 350px;
 }
@@ -138,14 +138,13 @@ h1 {
 .introduction {
   width: 650px;
   height: 500px;
-  background-color: #1448eb;
-  color: white;
+  /*background-color: #808080;*/
+  color: black;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   position: relative;
-  border: 10px double #808080;
   top: 20px;
   margin: 0 auto 50px;
   padding: 20px;
@@ -209,10 +208,12 @@ h1 {
   color: white;
   text-align: center;
   margin-bottom: 20px;
+  border-radius: 10px;
 }
 
 h2 {
   margin-bottom: 10px;
+  color: #ffa500;
 }
 
 h2,
@@ -232,6 +233,7 @@ h2,
   font-family: Arial, sans-serif;
   margin-top: 60px;
   margin-bottom: 30px;
+  border-radius: 10px;
 }
 
 .vote-options {
@@ -256,6 +258,7 @@ h2,
   margin: auto;
   font-family: Arial, sans-serif;
   margin-bottom: 200px;
+  border-radius: 10px;
 }
 
 .comment-form {
@@ -266,6 +269,10 @@ h2,
 
 footer {
   margin-bottom: 20px;
+  height: 100px;
+  background-color: black;
+  display: flex;
+  align-items: center;
 }
 
 .footer img {
