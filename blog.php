@@ -432,26 +432,36 @@ session_start();
   $conn->close();
   ?>
   </div>
-    </div>
+ </div>
     <!---------------------------footer----------------------------------->
     <footer class="footer">
       <div class="container">
         <div class="col-12">
           <div class="row d-flex justify-content-center">
             <div class="col-md-2 col-sm-1">
+              <a href="https://www.facebook.com/oves.moh">
               <img src="logos/facebook.png" alt="Logo 1" />
+              </a>
             </div>
             <div class="col-md-2 col-sm-1">
+              <a href="https://www.instagram.com/ovismo786/">
               <img src="logos/instagram.png" alt="Logo 2" />
+              </a>
             </div>
             <div class="col-md-2 col-sm-1">
+              <a href="https://www.linkedin.com/in/ovis-m-45763328a/">
               <img src="logos/linkedin.png" alt="Logo 3" />
+              </a>
             </div>
             <div class="col-md-2 col-sm-1">
+              <a href="https://twitter.com/oviss02">
               <img src="logos/twitter.png" alt="Logo 4" />
+              </a>
             </div>
             <div class="col-md-2 col-sm-1">
+              <a href="https://github.com/ovis02">
               <img src="logos/github.png" alt="Logo 5" />
+              </a>
             </div>
           </div>
         </div>
