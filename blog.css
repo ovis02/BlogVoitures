@@ -138,8 +138,6 @@ h1 {
 .introduction {
   width: 650px;
   height: 500px;
-  /*background-color: #808080;*/
-  color: black;
   display: flex;
   justify-content: center;
   align-items: center;
