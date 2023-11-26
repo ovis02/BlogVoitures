@@ -37,7 +37,7 @@ session_start();
 
         <div class="plate-number">
           <div class="rectangle">
-            <img src="images/france.png" alt="Image 1" />
+            <img src="public/images/france.png" alt="Image 1" />
           </div>
           <ul class="links">
             <li>
@@ -74,7 +74,7 @@ session_start();
           </div>
 
           <div class="rectangle">
-            <img src="images/75.png" alt="Image 2" />
+            <img src="public/images/75.png" alt="Image 2" />
           </div>
         </div>
         <div id="vertical-navbar" class="vertical-navbar">
@@ -87,7 +87,7 @@ session_start();
           <a href="#" id="logo-burger-button">
             <img
               id="logo-burger"
-              src="logos/burgerBlanc.png"
+              src="public/logos/burgerBlanc.png"
               alt="logo-burger"
               class="logo-burger"
           /></a>
@@ -131,7 +131,7 @@ session_start();
       <div class="voiture1">
         <article class="voiture">
           <img
-            src="images/skyline.jpeg"
+            src="public/images/skyline.jpeg"
             onclick="agrandirImage(this)"
           />
         </article>
@@ -155,7 +155,7 @@ session_start();
       <div class="voiture2">
         <article class="voiture">
           <img
-            src="images/supra.jpeg"
+            src="public/images/supra.jpeg"
             onclick="agrandirImage(this)"
           />
         </article>
@@ -180,7 +180,7 @@ session_start();
       <div class="voiture3">
         <article class="voiture">
           <img
-            src="images/mustangGT.jpeg"
+            src="public/images/mustangGT.jpeg"
             onclick="agrandirImage(this)"
           />
         </article>
@@ -202,7 +202,7 @@ session_start();
       </div>
         <article class="voiture">
           <img
-            src="images/lancer.jpeg"
+            src="public/images/lancer.jpeg"
             alt="Voiture 4"
             onclick="agrandirImage(this)"
           />
@@ -225,7 +225,7 @@ session_start();
       <div class="voiture5">
         <article class="voiture">
           <img
-            src="images/m3.jpeg"
+            src="public/images/m3.jpeg"
             onclick="agrandirImage(this)"
           />
         </article>
@@ -246,7 +246,7 @@ session_start();
       <div class="voiture6">
         <article class="voiture">
           <img
-            src="images/porsche.jpeg"
+            src="public/images/porsche.jpeg"
             onclick="agrandirImage(this)"
           />
         </article>
@@ -434,27 +434,27 @@ session_start();
           <div class="row d-flex justify-content-center">
             <div class="col-md-2 col-sm-1">
               <a href="https://www.facebook.com/oves.moh">
-              <img src="logos/facebook.png" alt="Logo 1" />
+              <img src="public/logos/facebook.png" alt="Logo 1" />
               </a>
             </div>
             <div class="col-md-2 col-sm-1">
               <a href="https://www.instagram.com/ovismo786/">
-              <img src="logos/instagram.png" alt="Logo 2" />
+              <img src="public/logos/instagram.png" alt="Logo 2" />
               </a>
             </div>
             <div class="col-md-2 col-sm-1">
               <a href="https://www.linkedin.com/in/ovis-m-45763328a/">
-              <img src="logos/linkedin.png" alt="Logo 3" />
+              <img src="public/logos/linkedin.png" alt="Logo 3" />
               </a>
             </div>
             <div class="col-md-2 col-sm-1">
               <a href="https://twitter.com/oviss02">
-              <img src="logos/twitter.png" alt="Logo 4" />
+              <img src="public/logos/twitter.png" alt="Logo 4" />
               </a>
             </div>
             <div class="col-md-2 col-sm-1">
               <a href="https://github.com/ovis02">
-              <img src="logos/github.png" alt="Logo 5" />
+              <img src="public/logos/github.png" alt="Logo 5" />
               </a>
             </div>
           </div>
