@@ -1,0 +1,2 @@
+AllowOverride All
+AddType application/x-httpd-php .php
