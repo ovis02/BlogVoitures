@@ -132,7 +132,6 @@ session_start();
         <article class="voiture">
           <img
             src="images/skyline.jpeg"
-            alt="Voiture 1"
             onclick="agrandirImage(this)"
           />
         </article>
@@ -157,7 +156,6 @@ session_start();
         <article class="voiture">
           <img
             src="images/supra.jpeg"
-            alt="Voiture 2"
             onclick="agrandirImage(this)"
           />
         </article>
@@ -183,7 +181,6 @@ session_start();
         <article class="voiture">
           <img
             src="images/mustangGT.jpeg"
-            alt="Voiture 3"
             onclick="agrandirImage(this)"
           />
         </article>
@@ -203,7 +200,6 @@ session_start();
           </p>
         </article>
       </div>
-      <div class="voiture4">
         <article class="voiture">
           <img
             src="images/lancer.jpeg"
@@ -230,7 +226,6 @@ session_start();
         <article class="voiture">
           <img
             src="images/m3.jpeg"
-            alt="Voiture 5"
             onclick="agrandirImage(this)"
           />
         </article>
@@ -252,7 +247,6 @@ session_start();
         <article class="voiture">
           <img
             src="images/porsche.jpeg"
-            alt="Voiture 6"
             onclick="agrandirImage(this)"
           />
         </article>
