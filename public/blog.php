@@ -37,7 +37,7 @@ session_start();
 
         <div class="plate-number">
           <div class="rectangle">
-            <img src="public/images/france.png" alt="Image 1" />
+            <img src="images/france.png" alt="Image 1" />
           </div>
           <ul class="links">
             <li>
@@ -74,7 +74,7 @@ session_start();
           </div>
 
           <div class="rectangle">
-            <img src="public/images/75.png" alt="Image 2" />
+            <img src="images/75.png" alt="Image 2" />
           </div>
         </div>
         <div id="vertical-navbar" class="vertical-navbar">
@@ -87,7 +87,7 @@ session_start();
           <a href="#" id="logo-burger-button">
             <img
               id="logo-burger"
-              src="public/logos/burgerBlanc.png"
+              src="logos/burgerBlanc.png"
               alt="logo-burger"
               class="logo-burger"
           /></a>
@@ -131,7 +131,7 @@ session_start();
       <div class="voiture1">
         <article class="voiture">
           <img
-            src="public/images/skyline.jpeg"
+            src="images/skyline.jpeg"
             onclick="agrandirImage(this)"
           />
         </article>
@@ -155,7 +155,7 @@ session_start();
       <div class="voiture2">
         <article class="voiture">
           <img
-            src="public/images/supra.jpeg"
+            src="images/supra.jpeg"
             onclick="agrandirImage(this)"
           />
         </article>
@@ -180,7 +180,7 @@ session_start();
       <div class="voiture3">
         <article class="voiture">
           <img
-            src="public/images/mustangGT.jpeg"
+            src="images/mustangGT.jpeg"
             onclick="agrandirImage(this)"
           />
         </article>
@@ -200,10 +200,10 @@ session_start();
           </p>
         </article>
       </div>
+      <div class="voiture4">
         <article class="voiture">
           <img
-            src="public/images/lancer.jpeg"
-            alt="Voiture 4"
+            src="images/lancer.jpeg"
             onclick="agrandirImage(this)"
           />
         </article>
@@ -225,7 +225,7 @@ session_start();
       <div class="voiture5">
         <article class="voiture">
           <img
-            src="public/images/m3.jpeg"
+            src="images/m3.jpeg"
             onclick="agrandirImage(this)"
           />
         </article>
@@ -246,7 +246,7 @@ session_start();
       <div class="voiture6">
         <article class="voiture">
           <img
-            src="public/images/porsche.jpeg"
+            src="images/porsche.jpeg"
             onclick="agrandirImage(this)"
           />
         </article>
@@ -434,27 +434,27 @@ session_start();
           <div class="row d-flex justify-content-center">
             <div class="col-md-2 col-sm-1">
               <a href="https://www.facebook.com/oves.moh">
-              <img src="public/logos/facebook.png" alt="Logo 1" />
+              <img src="facebook.png" alt="Logo 1" />
               </a>
             </div>
             <div class="col-md-2 col-sm-1">
               <a href="https://www.instagram.com/ovismo786/">
-              <img src="public/logos/instagram.png" alt="Logo 2" />
+              <img src="instagram.png" alt="Logo 2" />
               </a>
             </div>
             <div class="col-md-2 col-sm-1">
               <a href="https://www.linkedin.com/in/ovis-m-45763328a/">
-              <img src="public/logos/linkedin.png" alt="Logo 3" />
+              <img src="linkedin.png" alt="Logo 3" />
               </a>
             </div>
             <div class="col-md-2 col-sm-1">
               <a href="https://twitter.com/oviss02">
-              <img src="public/logos/twitter.png" alt="Logo 4" />
+              <img src="twitter.png" alt="Logo 4" />
               </a>
             </div>
             <div class="col-md-2 col-sm-1">
               <a href="https://github.com/ovis02">
-              <img src="public/logos/github.png" alt="Logo 5" />
+              <img src="github.png" alt="Logo 5" />
               </a>
             </div>
           </div>
