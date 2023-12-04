@@ -462,6 +462,6 @@ session_start();
         </div>
       </div>
     </footer>
-    <script src="blog.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
