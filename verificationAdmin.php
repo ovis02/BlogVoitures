@@ -4,7 +4,7 @@ session_start();
 // Connexion à la base de données
 $servername = "localhost";
 $username = "root";
-$password = ""; // Mot de passe vide
+$password = ""; 
 $dbname = "BlogAuto";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
