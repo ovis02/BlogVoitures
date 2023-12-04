@@ -1,4 +1,4 @@
-//Allumer les phares ou eteindre
+//------------Allumer les phares ou eteindre----------------
 
 function allumerPhares() {
   document.querySelector(".fond-ecran").src = "images/lightOn.png";
@@ -8,13 +8,13 @@ function eteindrePhares() {
   document.querySelector(".fond-ecran").src = "images/lightOff.png";
 }
 
-//Navigation bouton burger
+//-------------Navigation bouton burger---------------------
 
-// Sélectionnez le logo burger bouton et la barre de navigation verticale
+// Sélection du logo burger bouton et de la barre de navigation verticale
 const logoBurgerButton = document.getElementById("logo-burger-button");
 const verticalNavbar = document.getElementById("vertical-navbar");
 
-// Créez une variable pour suivre l'état de la barre de navigation
+// Création d'une variable pour suivre l'état de la barre de navigation
 let isNavbarVisible = false;
 
 // Fonction pour ouvrir la barre de navigation
@@ -29,15 +29,15 @@ function closeNavbar() {
   isNavbarVisible = false;
 }
 
-// Sélectionnez le bouton "Fermer"
+// Sélection du bouton "Fermer"
 const closeButton = document.getElementById("close-button");
 
-// Ajoutez un gestionnaire d'événement au bouton "Fermer"
+// Ajout d'un gestionnaire d'événement au bouton "Fermer"
 closeButton.addEventListener("click", () => {
   closeNavbar();
 });
 
-// Ajoutez un gestionnaire d'événement au logo burger bouton
+// Ajout d'un gestionnaire d'événement au logo burger bouton
 logoBurgerButton.addEventListener("click", () => {
   if (!isNavbarVisible) {
     openNavbar();
@@ -46,12 +46,12 @@ logoBurgerButton.addEventListener("click", () => {
   }
 });
 
-//agrandir l'image
+//------------------Agrandir l'image-------------------------
 function agrandirImage(image) {
   image.classList.toggle("agrandie");
 }
 
-//Utilisation d'AJAX pour envoyer les données du formulaire de vote sans recharger la page
+//---------------Utilisation d'AJAX pour envoyer les données du formulaire de vote sans recharger la page---------------------------
 
 document
   .getElementById("vote-form")
@@ -74,7 +74,7 @@ document
     xhr.send(formData);
   });
 
-//Formulaire administrateur
+//--------------------Formulaire administrateur-----------------------
 
 const adminLink = document.querySelector(".admin");
 const loginForm = document.querySelector(".login-form");

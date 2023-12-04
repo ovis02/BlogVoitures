@@ -1,12 +1,12 @@
-@charset "UTF-8";
 /*...................................base.................................*/
 body {
   background-color: #f2f2f2;
-}
-body ul,
-body li {
-  margin: 0;
-  padding: 0;
+
+  ul,
+  li {
+    margin: 0;
+    padding: 0;
+  }
 }
 
 /*............................admin......................................*/
@@ -37,51 +37,59 @@ nav {
   right: 0;
   display: flex;
   justify-content: center;
+
+  img {
+    height: 300px;
+    width: 100%;
+  }
+
+  .plate-number {
+    width: 500px;
+    height: 50px;
+    background-color: white;
+    position: absolute;
+    top: 230px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+  }
+
   /* Rectangles à chaque extrémité */
+  .rectangle {
+    width: 25px;
+    height: 50px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
   /* Liste de liens */
-}
-nav img {
-  height: 300px;
-  width: 100%;
-}
-nav .plate-number {
-  width: 500px;
-  height: 50px;
-  background-color: white;
-  position: absolute;
-  top: 230px;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-}
-nav .rectangle {
-  width: 25px;
-  height: 50px;
-}
-nav .rectangle img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-nav .links {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-nav .links li {
-  margin-right: 20px; /* Espace entre les liens */
-}
-nav .links li:not(:last-child)::after {
-  content: " - ";
-  margin-left: 5px; /* Espace entre le tiret et le lien suivant */
-}
-nav .links a {
-  font-size: 32px;
-  text-decoration: none;
-  color: black;
+  .links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    li {
+      margin-right: 20px; /* Espace entre les liens */
+
+      &:not(:last-child)::after {
+        content: " - ";
+        margin-left: 5px; /* Espace entre le tiret et le lien suivant */
+      }
+    }
+
+    a {
+      font-size: 32px;
+      text-decoration: none;
+      color: black;
+    }
+  }
 }
 
 /*...............................Logoburger.....................................*/
@@ -103,12 +111,13 @@ nav .links a {
   flex-direction: column; /* Afficher les liens en colonnes */
   align-items: center;
   justify-content: center;
-}
-.vertical-navbar a {
-  color: black;
-  text-decoration: none;
-  font-size: 26px;
-  padding: 10px;
+
+  a {
+    color: black;
+    text-decoration: none;
+    font-size: 26px;
+    padding: 10px;
+  }
 }
 
 /*.................................titre principal + Introduction.................*/
@@ -116,29 +125,29 @@ h1,
 .introduction {
   font-family: "Libre Franklin", sans-serif;
   font-weight: bold;
-}
-h1 h1,
-.introduction h1 {
-  color: #ffa500;
-  text-align: center;
-  margin-top: 350px;
-}
-h1 .introduction,
-.introduction .introduction {
-  width: 650px;
-  height: 500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  position: relative;
-  top: 20px;
-  margin: 0 auto 50px;
-  padding: 20px;
-}
-h1 .introduction p,
-.introduction .introduction p {
-  font-size: 20px;
+
+  h1 {
+    color: #ffa500;
+    text-align: center;
+    margin-top: 350px;
+  }
+
+  .introduction {
+    width: 650px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    top: 20px;
+    margin: 0 auto 50px;
+    padding: 20px;
+
+    p {
+      font-size: 20px;
+    }
+  }
 }
 
 /*.................................Section voitures......................*/
@@ -165,21 +174,23 @@ h1 .introduction p,
   max-height: 300px;
   margin-right: 20px;
   transition: all 1s ease;
-}
-.voiture img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  margin-bottom: 20px;
-}
-.voiture img.agrandie {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 3;
-  transition: all 1s ease;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin-bottom: 20px;
+
+    &.agrandie {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 3;
+      transition: all 1s ease;
+    }
+  }
 }
 
 .description {
@@ -191,15 +202,17 @@ h1 .introduction p,
   text-align: center;
   margin-bottom: 20px;
   border-radius: 10px;
-}
-.description h2 {
-  margin-bottom: 10px;
-  color: #ffa500;
-}
-.description h2,
-.description p {
-  font-size: 20px;
-  font-family: "Libre Franklin", sans-serif;
+
+  h2 {
+    margin-bottom: 10px;
+    color: #ffa500;
+  }
+
+  h2,
+  p {
+    font-size: 20px;
+    font-family: "Libre Franklin", sans-serif;
+  }
 }
 
 /*.................................formulaire de vote........................*/
@@ -215,15 +228,17 @@ h1 .introduction p,
   margin-top: 60px;
   margin-bottom: 30px;
   border-radius: 10px;
-}
-.vote-section .vote-options {
-  text-align: left;
-}
-.vote-section .submit-btn {
-  margin-top: 20px;
-  background-color: #d9d9d9;
-  color: black;
-  border-radius: 5px;
+
+  .vote-options {
+    text-align: left;
+  }
+
+  .submit-btn {
+    margin-top: 20px;
+    background-color: #d9d9d9;
+    color: black;
+    border-radius: 5px;
+  }
 }
 
 /*.......................Section commentaire....................*/
@@ -238,9 +253,10 @@ h1 .introduction p,
   font-family: Arial, sans-serif;
   margin-bottom: 200px;
   border-radius: 10px;
-}
-.comment-section .comment-form {
-  text-align: left;
+
+  .comment-form {
+    text-align: left;
+  }
 }
 
 /*....................footer......................*/
@@ -250,10 +266,11 @@ footer {
   background-color: #666666;
   display: flex;
   align-items: center;
-}
-footer img {
-  width: 50px;
-  height: 50px;
+
+  img {
+    width: 50px;
+    height: 50px;
+  }
 }
 
 /*Pour smartphone*/
@@ -261,18 +278,22 @@ footer img {
   nav img {
     height: 80px;
   }
+
   .plate-number {
     width: 150px;
     height: 30px;
     top: 80px;
   }
+
   .rectangle {
     width: 15px;
     height: 30px;
   }
+
   .links {
     display: none;
   }
+
   .texte-bienvenue {
     display: block;
     font-size: 20px;
@@ -280,6 +301,7 @@ footer img {
     display: flex;
     align-items: center;
   }
+
   .burger-container {
     display: block;
     position: fixed;
@@ -287,20 +309,24 @@ footer img {
     right: 0;
     margin: 10px;
     z-index: 2;
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
   }
-  .burger-container img {
-    width: 30px;
-    height: 30px;
-  }
+
   .introduction {
     width: auto;
     height: auto;
     margin: 10px;
     margin-bottom: 50px;
+
+    p {
+      font-size: 12px;
+    }
   }
-  .introduction p {
-    font-size: 12px;
-  }
+
   .voiture1,
   .voiture2,
   .voiture3,
@@ -311,28 +337,34 @@ footer img {
     align-items: center;
     margin: 10px;
   }
+
   .voiture {
     height: 150px;
     width: 300px;
     margin: 10px;
   }
+
   .description {
     width: 100%;
     margin-top: 20px;
+
+    h2 {
+      font-size: 14px;
+    }
+
+    p {
+      font-size: 12px;
+    }
   }
-  .description h2 {
-    font-size: 14px;
-  }
-  .description p {
-    font-size: 12px;
-  }
+
   .comment-section {
     margin-bottom: 50px;
   }
-  footer img {
-    width: 30px;
-    height: 30px;
+
+  footer {
+    img {
+      width: 30px;
+      height: 30px;
+    }
   }
 }
-
-/*# sourceMappingURL=blog.css.map */

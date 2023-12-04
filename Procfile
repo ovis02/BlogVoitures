@@ -1,1 +1,1 @@
-web: vendor/bin/heroku-php-apache2 blog.php
+web: vendor/bin/heroku-php-apache2 public/
