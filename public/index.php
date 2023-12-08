@@ -20,7 +20,6 @@ session_start();
       rel="stylesheet"
     />
     <link rel="stylesheet" href="blog.css" />
-     <script src="blog.js"></script>
   </head>
   <body>
   <a href="#" class="admin">Admin</a>
@@ -463,6 +462,6 @@ session_start();
         </div>
       </div>
     </footer>
-   
+    <script src="blog.js"></script>
   </body>
 </html>
