@@ -1,9 +1,9 @@
 <?php
-include 'cookie.php'; // Inclu le fichier contenant les fonctions pour les cookies
+include 'vote/cookie.php'; // Inclu le fichier contenant les fonctions pour les cookies
 
 // Vérification de la soumission du formulaire et traitement du vote
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include 'configuration.php'; // Inclu le fichier de configuration de la base de données
+    include '<connexion_database/configuration.php'; // Inclu le fichier de configuration de la base de données
 
     if (isset($_POST['vote'])) {
         // Vérifie si un cookie existe pour empêcher un vote multiple

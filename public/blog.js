@@ -51,29 +51,6 @@ function agrandirImage(image) {
   image.classList.toggle("agrandie");
 }
 
-//---------------Utilisation d'AJAX pour envoyer les données du formulaire de vote sans recharger la page---------------------------
-
-document
-  .getElementById("vote-form")
-  .addEventListener("submit", function (event) {
-    event.preventDefault(); // Empêche le comportement par défaut du formulaire
-
-    var formData = new FormData(this); // Récupération des données du formulaire
-
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-          document.getElementById("results").innerHTML = xhr.responseText; // Affichage des résultats
-        } else {
-          console.error("Une erreur est survenue.");
-        }
-      }
-    };
-    xhr.open("POST", "vote.php", true);
-    xhr.send(formData);
-  });
-
 //--------------------Formulaire administrateur-----------------------
 
 const adminLink = document.querySelector(".admin");
@@ -86,5 +63,42 @@ adminLink.addEventListener("click", function (event) {
     loginForm.style.display = "none"; // Cache le formulaire s'il est déjà affiché
   } else {
     loginForm.style.display = "block"; // Affiche le formulaire s'il est caché
+  }
+});
+
+//----------soumettre le formulaire avec ajax et confirmation---------------------------
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("comment-form");
+  if (form) {
+    form.addEventListener("submit", function (event) {
+      event.preventDefault(); // Empêcher le comportement par défaut du formulaire
+
+      console.log("Formulaire soumis");
+
+      let formData = new FormData(this);
+
+      fetch("comments.php", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Réponse reçue :", data);
+
+          let messageDiv = document.getElementById("message");
+          if (data.status === "success") {
+            messageDiv.style.color = "orange";
+          } else {
+            messageDiv.style.color = "red";
+          }
+          messageDiv.innerHTML = data.message;
+          messageDiv.style.display = "block";
+        })
+        .catch((error) => {
+          console.error("Erreur lors de la soumission du formulaire :", error);
+        });
+    });
+  } else {
+    console.error("Le formulaire avec l'ID 'comment-form' est introuvable.");
   }
 });

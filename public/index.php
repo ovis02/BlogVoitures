@@ -1,9 +1,16 @@
 <?php
-session_start();
+// Inclure le fichier de connexion à la base de données
+include_once "connexion_database/configuration.php";
+
+// Sélectionner les avis validés
+$sql = "SELECT name, comment, created_at FROM Comments WHERE validated = 1 ORDER BY created_at DESC";
+$stmt = $pdo->query($sql);
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
+  
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog Automobile</title>
@@ -24,7 +31,7 @@ session_start();
   <body>
   <a href="#" class="admin">Admin</a>
   <div class="login-form">
-    <form action="verificationAdmin.php" method="POST">
+    <form action="verification_admin/verificationAdmin.php" method="POST">
       <input type="text" name="username" placeholder="Nom d'utilisateur">
       <input type="password" name="password" placeholder="Mot de passe">
       <button type="submit">Se connecter</button>
@@ -99,7 +106,7 @@ session_start();
         Légendes Automobiles:<br> Six voitures qui ont marqué l'Histoire
       </h1>
         <div class="login-form">
-    <form action="process_login.php" method="POST">
+    <form action="verification_admin/verificationAdmin.php" method="POST">
       <input type="text" name="username" placeholder="Nom d'utilisateur">
       <input type="password" name="password" placeholder="Mot de passe">
       <button type="submit">Se connecter</button>
@@ -270,7 +277,7 @@ session_start();
       <div class="container" id="vote">
         <div class="vote-section">
           <h2>Quelle est votre voiture préférée ?</h2>
-          <form action="vote.php" method="post" id="vote-form">
+          <form action="vote/vote.php" method="post" id="vote-form">
             <div class="vote-options">
               <div class="form-check">
                 <input
@@ -349,119 +356,65 @@ session_start();
 </section>
 
     <!---------------------------Comment-form----------------------------------->
-    <div class="comment-section">
-      <h2>Laisser un commentaire</h2>
-      <form action="comments.php" method="POST" id="comment-form" class="comment-form">
-        <div class="form-group">
-          <label for="name">Nom:</label>
-          <input
-            type="text"
-            class="form-control"
-            id="name"
-            name="name"
-            placeholder="Votre nom"
-            required  
-          />
+   <!-- Formulaire de commentaire -->
+        <div class="comment-section">
+            <h2>Laisser un commentaire</h2>
+            <form id="comment-form" class="comment-form">
+                <div class="form-group mb-3">
+                    <label for="name">Nom:</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Votre nom" required />
+                </div>
+                <div class="form-group mb-3">
+                    <label for="email">Adresse de messagerie:</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Votre adresse email" required />
+                </div>
+                <div class="form-group mb-3">
+                    <label for="comment">Commentaire:</label>
+                    <textarea class="form-control" id="comment" name="comment" rows="4" placeholder="Votre commentaire" required></textarea>
+                </div>
+               <button type="submit" class="submit-btn">Valider</button>
+            </form>
+
+            <!-- Message de confirmation -->
+            <div id="message" class="alert mt-3" style="display: none;"></div>
         </div>
-        <div class="form-group">
-          <label for="email">Adresse de messagerie:</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            name="email"
-            placeholder="Votre adresse email"
-            required 
-          />
-        </div>
-        <div class="form-group">
-          <label for="comment">Commentaire:</label>
-          <textarea
-            class="form-control"
-            id="comment"
-            name="comment"
-            rows="4"
-            placeholder="Votre commentaire"
-            required 
-          ></textarea>
-        </div>
-        <button type="submit" class="submit-btn">Valider</button>
-      </form>
-       <!--Code pour la confirmation du commentaire envoyé-->
-         <?php if (isset($_SESSION['message'])): ?>
-        <div class="confirmation-message">
-            <?php echo $_SESSION['message']; ?>
-        </div>
-        <?php unset($_SESSION['message']); ?>
-    <?php endif; ?>
-    <!--------------------------------------------------------->
-        <div class="approved-comments">
-    <?php
-      // Code pour récupérer et afficher les commentaires approuvés depuis la base de données
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $dbname = "BlogAuto";
+    </div>
+       
 
-  $conn = new mysqli($servername, $username, $password, $dbname);
-
-  if ($conn->connect_error) {
-    die("La connexion a échoué : " . $conn->connect_error);
-  }
-
-  $sql = "SELECT * FROM Comments WHERE validated = 1"; // Récupérer les commentaires validés
-  $result = $conn->query($sql);
-
-  if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-      echo "<div class=\"comment\">";
-      echo "<p><strong>Date :</strong> " . $row['created_at'] . "</p>"; // Afficher la date
-      echo "<p><strong>Nom :</strong> " . $row['name'] . "</p>";
-      echo "<p><strong>Commentaire :</strong> " . $row['comment'] . "</p>";
-      echo "</div>";
-    }
-  } else {
-    echo "Aucun commentaire approuvé.";
-  }
-
-  $conn->close();
-  ?>
-  </div>
- </div>
     <!---------------------------footer----------------------------------->
-    <footer class="footer">
-      <div class="container">
-        <div class="col-12">
-          <div class="row d-flex justify-content-center">
-            <div class="col-md-2 col-sm-1">
-              <a href="https://www.facebook.com/oves.moh">
-              <img src="logos/facebook.png" alt="Logo 1" />
-              </a>
-            </div>
-            <div class="col-md-2 col-sm-1">
-              <a href="https://www.instagram.com/ovismo786/">
-              <img src="logos/instagram.png" alt="Logo 2" />
-              </a>
-            </div>
-            <div class="col-md-2 col-sm-1">
-              <a href="https://www.linkedin.com/in/ovis-m-45763328a/">
-              <img src="logos/linkedin.png" alt="Logo 3" />
-              </a>
-            </div>
-            <div class="col-md-2 col-sm-1">
-              <a href="https://twitter.com/oviss02">
-              <img src="logos/twitter.png" alt="Logo 4" />
-              </a>
-            </div>
-            <div class="col-md-2 col-sm-1">
-              <a href="https://github.com/ovis02">
-              <img src="logos/github.png" alt="Logo 5" />
-              </a>
-            </div>
-          </div>
+<footer class="footer">
+  <div class="container">
+    <div class="col-12">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-2 col-sm-2">
+          <a href="https://www.facebook.com/oves.moh" target="_blank">
+            <img src="logos/facebook.png" alt="Facebook Logo" class="social-icon" />
+          </a>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <a href="https://www.instagram.com/ovismo786/" target="_blank">
+            <img src="logos/instagram.png" alt="Instagram Logo" class="social-icon" />
+          </a>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <a href="https://www.linkedin.com/in/ovis-m-45763328a/" target="_blank">
+            <img src="logos/linkedin.png" alt="LinkedIn Logo" class="social-icon" />
+          </a>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <a href="https://twitter.com/oviss02" target="_blank">
+            <img src="logos/twitter.png" alt="Twitter Logo" class="social-icon" />
+          </a>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <a href="https://github.com/ovis02" target="_blank">
+            <img src="logos/github.png" alt="GitHub Logo" class="social-icon" />
+          </a>
         </div>
       </div>
-    </footer>
+    </div>
+  </div>
+</footer>
     <script src="blog.js"></script>
   </body>
 </html>

@@ -1,0 +1,152 @@
+/*........................Interface Administrateur...........................................*/
+.container.comment-management {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.table-title {
+  font-size: 24px;
+  color: #333;
+}
+
+.comment-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.btn-edit {
+  background-color: #4caf50; /* Vert pour valider */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-delete {
+  background-color: #f44336; /* Rouge pour supprimer */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-edit:hover,
+.btn-delete:hover {
+  opacity: 0.8;
+}
+
+.btn-design {
+  background: linear-gradient(
+    145deg,
+    #343a40,
+    #495057
+  ); /* Couleur Bootstrap sombre */
+  color: #ff6b6b; /* Couleur du texte */
+  font-size: 18px;
+  font-weight: bold;
+  padding: 15px 30px;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3); /* Ombres pour l'effet 3D */
+  transition: all 0.3s ease;
+  transform: perspective(1000px) translateZ(0);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.btn-design::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    145deg,
+    #ff7f7f,
+    #ff5050
+  ); /* Effet brillant rouge */
+  border-radius: 8px;
+  z-index: -1;
+  transition: all 0.3s ease;
+  transform: rotateX(90deg); /* Cache l'effet initialement */
+  transform-origin: bottom;
+}
+
+.btn-design:hover {
+  color: #ffffff; /* Change la couleur du texte au survol */
+  transform: translateY(-5px) rotateX(-15deg); /* Soulève et incline le bouton */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); /* Accentue l'effet 3D au survol */
+}
+
+.btn-design:hover::before {
+  transform: rotateX(0); /* Affiche l'effet brillant rouge lors du survol */
+}
+
+.btn-design:active {
+  transform: translateY(0) rotateX(0); /* Réduit l'effet lorsque le bouton est pressé */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Ajuste les ombres au clic */
+}
+
+/*Interface version mobile*/
+.container.comment-management {
+  padding: 10px;
+}
+
+.table-title {
+  font-size: 18px;
+}
+
+.table th,
+.table td {
+  padding: 5px;
+  font-size: 14px;
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.comment-table {
+  font-size: 12px;
+}
+
+/*Pour smartphone*/
+@media only screen and (max-width: 767px) {
+  /*Interface version mobile*/
+  .container.comment-management {
+    padding: 10px;
+  }
+
+  .table-title {
+    font-size: 18px;
+  }
+
+  .table th,
+  .table td {
+    padding: 5px;
+    font-size: 14px;
+  }
+
+  .btn-edit,
+  .btn-delete {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .comment-table {
+    font-size: 12px;
+  }
+}

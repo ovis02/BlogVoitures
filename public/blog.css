@@ -263,19 +263,105 @@ h2,
   text-align: left;
 }
 
-/*....................footer......................*/
+/*....................footer update......................*/
 
-footer {
-  margin-bottom: 20px;
-  height: 100px;
-  background-color: #666666;
-  display: flex;
-  align-items: center;
+.footer {
+  background: #666666;
+  padding: 40px 0;
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+
+.footer:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent);
+  z-index: -1;
+}
+
+/* Centrage avec des marges */
+.row.d-flex {
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+}
+
+/*réseaux sociaux */
+.social-icon {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  background-color: white;
+  padding: 10px;
+}
+
+.social-icon:hover {
+  transform: translateY(-10px) scale(1.2);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.9);
 }
 
 .footer img {
-  width: 50px;
-  height: 50px;
+  filter: grayscale(100%);
+  transition: filter 0.3s;
+}
+
+.footer img:hover {
+  filter: grayscale(0%);
+}
+
+.col-md-2.col-sm-2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.footer .container {
+  max-width: 1000px;
+}
+
+/* Effet 3D */
+.footer {
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Animation au survol */
+.footer a:hover .social-icon {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Adaptation pour mobile */
+@media (max-width: 768px) {
+  .social-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .col-md-2.col-sm-2 {
+    margin-bottom: 10px;
+  }
 }
 
 /*Pour smartphone*/
@@ -300,6 +386,12 @@ footer {
     display: none;
   }
 
+  h1 {
+    color: #ffa500;
+    text-align: center;
+    margin-top: 150px;
+  }
+
   .texte-bienvenue {
     display: block; /* Affiche le texte BIENVENUE */
     font-size: 20px;
@@ -314,7 +406,7 @@ footer {
 
   .burger-container {
     position: fixed;
-    top: 130px;
+    top: 60px;
     right: 0;
     margin: 10px;
     z-index: 2;
@@ -366,12 +458,13 @@ footer {
     margin-bottom: 50px;
   }
   /*....................footer......................*/
-  /*footer*/
-  .col-md-2.col-sm-1 {
-    width: auto;
+
+  .social-icon {
+    width: 40px;
+    height: 40px;
   }
-  .footer img {
-    width: 30px;
-    height: 30px;
+
+  .col-md-2.col-sm-2 {
+    margin-bottom: 10px;
   }
 }
