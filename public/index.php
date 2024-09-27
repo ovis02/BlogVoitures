@@ -41,7 +41,7 @@ $validated_comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <header>
      
              <nav>
-              <img class="fond-ecran" id="car-light" src="images/lightOff.png" />
+              <img class="fond-ecran" id="car-light" src="images/lightoff.png" />
 
         <div class="plate-number">
           <div class="rectangle">
