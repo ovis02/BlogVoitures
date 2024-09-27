@@ -1,47 +1,41 @@
 <?php
 session_start();
+include '../connexion_database/configuration.php'; // Inclure le fichier de connexion
 
-// Connexion à la base de données
-$servername = "localhost";
-$username = "root";
-$password = ""; 
-$dbname = "blogauto";
+// Affichage des erreurs pour le débogage
+error_reporting(error_level: E_ALL);
+ini_set(option: 'display_errors', value: 1);
 
-try {
-    // Connexion à la base de données
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// Vérification des identifiants
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-    // Vérifie si les données POST existent et ne sont pas vides
-    if (isset($_POST['username']) && isset($_POST['password'])) {
-        // Récupère les données du formulaire
-        $username = trim($_POST['username']);
-        $password = trim($_POST['password']);
+    // Requête SQL pour vérifier les identifiants dans la base de données
+    $sql = "SELECT * FROM users WHERE username = ?";
+    $stmt = $pdo->prepare(query: $sql);
+    $stmt->execute(params: [$username]);
+    $user = $stmt->fetch(mode: PDO::FETCH_ASSOC);
 
-        // Recherche de l'utilisateur dans la base de données
-        $stmt = $conn->prepare("SELECT username, password FROM users WHERE username = :username");
-        $stmt->bindParam(':username', $username);
-        $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($user) {
-            // Vérification du mot de passe
-            if (password_verify($password, $user['password'])) {
-                // Mot de passe correct, authentification réussie
-                $_SESSION['username'] = $username;
-                header("Location: ../interface.php");
-                exit();
-            } else {
-                // Mot de passe incorrect
-                echo "Mot de passe incorrect. Veuillez réessayer.";
-            }
+    // Vérification des résultats de la requête
+    if ($user) {
+        // Vérification du mot de passe
+        if (password_verify(password: $password, hash: $user['password'])) {
+            // Authentification réussie
+            $_SESSION['username'] = $username; // Stocker le nom d'utilisateur dans la session
+            header(header: "Location: ../interface.php"); // Rediriger vers l'interface
+            exit();
         } else {
-            // Utilisateur non trouvé
-            echo "Utilisateur non trouvé.";
+            // Mot de passe incorrect
+            echo "<div class='alert alert-danger'>Mot de passe incorrect. Veuillez réessayer.</div>";
         }
+    } else {
+        // Utilisateur non trouvé
+        echo "<div class='alert alert-danger'>Utilisateur non trouvé.</div>";
     }
-} catch(PDOException $e) {
-    echo "Erreur de connexion : " . $e->getMessage();
+} else {
+    // Redirige vers la page de connexion si la méthode de requête n'est pas POST
+    header(header: "Location: ../index.php");
+    exit();
 }
 ?>
-

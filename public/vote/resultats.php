@@ -1,10 +1,10 @@
 <?php
-include 'configuration.php'; // Inclure le fichier de configuration de la base de données
+include '../connexion_database/configuration.php'; // Inclure le fichier de configuration de la base de données
 
 // Requête pour obtenir le nombre de votes par voiture
-$sql = "SELECT voiture_preferee, COUNT(*) AS nombre_votes FROM Votes GROUP BY voiture_preferee";
+$sql = "SELECT voiture_preferee, COUNT(*) AS nombre_votes FROM votes GROUP BY voiture_preferee";
 
-$result = $conn->query($sql);
+$result = $conn->query(query: $sql);
 
 if ($result->num_rows > 0) {
     echo "<table>";

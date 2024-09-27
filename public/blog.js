@@ -1,49 +1,42 @@
 //------------Allumer les phares ou eteindre----------------
 
 function allumerPhares() {
-  document.querySelector(".fond-ecran").src = "images/lightOn.png";
+  document.querySelector(".fond-ecran").src = "images/lightOn2.png";
 }
 
 function eteindrePhares() {
-  document.querySelector(".fond-ecran").src = "images/lightOff.png";
+  document.querySelector(".fond-ecran").src = "images/lightOff2.png";
 }
 
 //-------------Navigation bouton burger---------------------
 
-// Sélection du logo burger bouton et de la barre de navigation verticale
-const logoBurgerButton = document.getElementById("logo-burger-button");
-const verticalNavbar = document.getElementById("vertical-navbar");
+document.addEventListener("DOMContentLoaded", () => {
+  const logoBurgerButton = document.getElementById("logo-burger-button");
+  const verticalNavbar = document.getElementById("vertical-navbar");
+  const closeButton = document.getElementById("close-button");
 
-// Création d'une variable pour suivre l'état de la barre de navigation
-let isNavbarVisible = false;
+  let isNavbarVisible = false;
 
-// Fonction pour ouvrir la barre de navigation
-function openNavbar() {
-  verticalNavbar.style.right = "0";
-  isNavbarVisible = true;
-}
-
-// Fonction pour fermer la barre de navigation
-function closeNavbar() {
-  verticalNavbar.style.right = "-200px";
-  isNavbarVisible = false;
-}
-
-// Sélection du bouton "Fermer"
-const closeButton = document.getElementById("close-button");
-
-// Ajout d'un gestionnaire d'événement au bouton "Fermer"
-closeButton.addEventListener("click", () => {
-  closeNavbar();
-});
-
-// Ajout d'un gestionnaire d'événement au logo burger bouton
-logoBurgerButton.addEventListener("click", () => {
-  if (!isNavbarVisible) {
-    openNavbar();
-  } else {
-    closeNavbar();
+  function openNavbar() {
+    verticalNavbar.style.display = "flex"; // Affiche la navbar
+    isNavbarVisible = true;
   }
+
+  function closeNavbar() {
+    verticalNavbar.style.display = "none"; // Masque la navbar
+    isNavbarVisible = false;
+  }
+
+  closeButton.addEventListener("click", closeNavbar);
+
+  logoBurgerButton.addEventListener("click", (event) => {
+    event.preventDefault(); // Évitez le comportement par défaut du lien
+    if (!isNavbarVisible) {
+      openNavbar();
+    } else {
+      closeNavbar();
+    }
+  });
 });
 
 //------------------Agrandir l'image-------------------------
@@ -102,3 +95,26 @@ document.addEventListener("DOMContentLoaded", function () {
     console.error("Le formulaire avec l'ID 'comment-form' est introuvable.");
   }
 });
+
+//Utilisation d'AJAX pour envoyer les données du formulaire de vote sans recharger la page
+
+document
+  .getElementById("vote-form")
+  .addEventListener("submit", function (event) {
+    event.preventDefault(); // Empêche le comportement par défaut du formulaire
+
+    var formData = new FormData(this); // Récupération des données du formulaire
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          document.getElementById("results").innerHTML = xhr.responseText; // Affichage des résultats
+        } else {
+          console.error("Une erreur est survenue.");
+        }
+      }
+    };
+    xhr.open("POST", "vote/vote.php", true);
+    xhr.send(formData);
+  });

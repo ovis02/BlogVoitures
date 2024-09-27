@@ -49,7 +49,7 @@ nav img {
   height: 50px;
   background-color: white;
   position: absolute;
-  top: 230px;
+  top: 260px;
   left: 50%;
   transform: translateX(-50%);
   margin: 0 auto;
@@ -97,12 +97,14 @@ nav img {
 /*...............................Logoburger.....................................*/
 
 .burger-container,
-.texte-bienvenue {
+.texte-bienvenue,
+.vertical-navbar,
+.vertical-navbar a,
+#close-button {
   display: none;
 }
 
 .vertical-navbar {
-  display: none;
   position: fixed;
   bottom: 0;
   right: 0;
@@ -111,7 +113,7 @@ nav img {
   text-align: center;
   z-index: 3;
   display: flex;
-  flex-direction: column; /* Afficher les liens en colonnes */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -122,6 +124,7 @@ nav img {
   font-size: 26px;
   padding: 10px;
 }
+
 /*.................................titre principal + Introduction.................*/
 h1,
 .introduction {
@@ -155,9 +158,15 @@ h1 {
 /*.................................Section voitures......................*/
 
 .voiture1,
-.voiture3,
 .voiture5 {
   margin-top: 100px;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 10%;
+}
+
+.voiture3 {
+  margin-top: 20px;
   display: flex;
   justify-content: flex-start;
   margin-left: 10%;
@@ -263,6 +272,49 @@ h2,
   text-align: left;
 }
 
+.validated-comments {
+  margin: 40px 20%;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  margin-bottom: 30px;
+}
+
+.validated-comments h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #343a40;
+}
+
+.validated-comments ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.validated-comments li {
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.validated-comments strong {
+  font-size: 16px;
+  color: #007bff;
+}
+
+.validated-comments em {
+  font-size: 16px;
+  color: #6c757d;
+}
+
+.validated-comments p {
+  margin-top: 10px;
+  line-height: 1.5;
+}
 /*....................footer update......................*/
 
 .footer {
@@ -352,20 +404,16 @@ h2,
   }
 }
 
-/* Adaptation pour mobile */
-@media (max-width: 768px) {
-  .social-icon {
-    width: 40px;
-    height: 40px;
-  }
-
-  .col-md-2.col-sm-2 {
-    margin-bottom: 10px;
-  }
-}
-
-/*Pour smartphone*/
 @media only screen and (max-width: 767px) {
+  a.admin {
+    position: absolute;
+    color: white;
+    text-decoration: none;
+    font-size: 10px;
+    top: 0;
+    right: 5px;
+    z-index: 100;
+  }
   nav img {
     height: 80px;
   }
@@ -376,7 +424,6 @@ h2,
     top: 80px;
   }
 
-  /* Rectangles à chaque extrémité */
   .rectangle {
     width: 15px;
     height: 30px;
@@ -393,7 +440,7 @@ h2,
   }
 
   .texte-bienvenue {
-    display: block; /* Affiche le texte BIENVENUE */
+    display: block;
     font-size: 20px;
     font-weight: bold;
     display: flex;
@@ -406,7 +453,7 @@ h2,
 
   .burger-container {
     position: fixed;
-    top: 60px;
+    top: 70px;
     right: 0;
     margin: 10px;
     z-index: 2;
@@ -414,6 +461,15 @@ h2,
   .burger-container img {
     width: 30px;
     height: 30px;
+  }
+
+  .vertical-navbar {
+    display: none;
+  }
+
+  .vertical-navbar a,
+  #close-button {
+    display: block;
   }
   /*..........................Introduction..................................*/
   .introduction {
@@ -456,6 +512,18 @@ h2,
   /*.......................Section commentaire....................*/
   .comment-section {
     margin-bottom: 50px;
+  }
+
+  .validated-comments h2 {
+    font-size: 18px;
+  }
+
+  .validated-comments strong {
+    font-size: 14px;
+  }
+
+  .validated-comments em {
+    font-size: 14px;
   }
   /*....................footer......................*/
 

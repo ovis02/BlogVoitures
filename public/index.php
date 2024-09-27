@@ -3,10 +3,11 @@
 include_once "connexion_database/configuration.php";
 
 // Sélectionner les avis validés
-$sql = "SELECT name, comment, created_at FROM Comments WHERE validated = 1 ORDER BY created_at DESC";
+$sql = "SELECT name, email, comment, created_at FROM comments WHERE validated = 1 ORDER BY created_at DESC";
 $stmt = $pdo->query($sql);
-
+$validated_comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -84,7 +85,7 @@ $stmt = $pdo->query($sql);
             <img src="images/75.png" alt="Image 2" />
           </div>
         </div>
-        <div id="vertical-navbar" class="vertical-navbar">
+        <div id="vertical-navbar" class="vertical-navbar" >
           <a href="#intro">Accueil</a>
           <a href="#voitures">Voitures</a>
           <a href="#vote">Vote</a>
@@ -379,7 +380,24 @@ $stmt = $pdo->query($sql);
             <div id="message" class="alert mt-3" style="display: none;"></div>
         </div>
     </div>
-       
+       <!-- Affichage des commentaires validés -->
+<div class="validated-comments mt-4">
+    <h2>Commentaires</h2>
+    <ul class="list-unstyled">
+        <?php if ($validated_comments): ?>
+            <?php foreach ($validated_comments as $comment): ?>
+                <li>
+                    <strong><?php echo htmlspecialchars($comment['name']); ?></strong> (<?php echo htmlspecialchars($comment['email']); ?>) <br>
+                    <em><?php echo htmlspecialchars($comment['created_at']); ?></em>
+                    <p><?php echo nl2br(htmlspecialchars($comment['comment'])); ?></p>
+                </li>
+                <hr>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <li>Aucun commentaire validé à afficher.</li>
+        <?php endif; ?>
+    </ul>
+</div>
 
     <!---------------------------footer----------------------------------->
 <footer class="footer">
@@ -403,7 +421,7 @@ $stmt = $pdo->query($sql);
         </div>
         <div class="col-md-2 col-sm-2">
           <a href="https://twitter.com/oviss02" target="_blank">
-            <img src="logos/twitter.png" alt="Twitter Logo" class="social-icon" />
+            <img src="logos/x.png" alt="x Logo" class="social-icon" />
           </a>
         </div>
         <div class="col-md-2 col-sm-2">
@@ -411,6 +429,9 @@ $stmt = $pdo->query($sql);
             <img src="logos/github.png" alt="GitHub Logo" class="social-icon" />
           </a>
         </div>
+      </div>
+        <div class="text-center mt-4">
+        <p>© 2024 Mohammad Aowis</p>
       </div>
     </div>
   </div>

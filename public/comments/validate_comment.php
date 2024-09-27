@@ -1,33 +1,33 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "blogauto";
+session_start(); // Assurez-vous que la session est démarrée
+include '../connexion_database/configuration.php'; // Inclure le fichier de connexion
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Vérification des données POST
+if (isset($_POST['comment_id']) && isset($_POST['action'])) {
+    $comment_id = $_POST['comment_id'];
+    $action = $_POST['action'];
 
-if ($conn->connect_error) {
-    die("La connexion a échoué : " . $conn->connect_error);
-}
+    try {
+        // Préparation de la requête en fonction de l'action
+        if ($action == 'approve') {
+            $sql = "UPDATE comments SET validated = 1 WHERE id = ?";
+        } elseif ($action == 'delete') {
+            $sql = "DELETE FROM comments WHERE id = ?";
+        } else {
+            die("Action non reconnue.");
+        }
 
-$comment_id = $_POST['comment_id'];
-$action = $_POST['action'];
+        // Préparation et exécution de la requête
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$comment_id]);
 
-if ($action == 'approve') {
-    $sql = "UPDATE Comments SET validated = 1 WHERE id = ?";
-} else if ($action == 'delete') {
-    $sql = "DELETE FROM Comments WHERE id = ?";
-}
-
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $comment_id);
-
-if ($stmt->execute()) {
-    header("Location: admin_comments.php"); // Redirection après validation ou suppression
+        // Redirection vers l'interface après l'action
+        header("Location: ../interface.php");
+        exit;
+    } catch (PDOException $e) {
+        echo "Erreur lors de l'exécution de la requête : " . $e->getMessage();
+    }
 } else {
-    echo "Erreur : " . $conn->error;
+    die("Données invalides.");
 }
-
-$stmt->close();
-$conn->close();
 ?>
