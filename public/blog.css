@@ -40,6 +40,10 @@ nav {
   justify-content: center;
 }
 
+.light-on {
+  content: url("images/lightOn.png");
+}
+
 nav img {
   height: 300px;
   width: 100%;

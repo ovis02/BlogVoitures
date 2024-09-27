@@ -41,7 +41,7 @@ $validated_comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <header>
      
              <nav>
-              <img class="fond-ecran" src="images/lightOff.jpg" />
+              <img class="fond-ecran" id="car-light" src="images/lightOff.png" />
 
         <div class="plate-number">
           <div class="rectangle">
@@ -49,35 +49,16 @@ $validated_comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
           </div>
           <ul class="links">
             <li>
-              <a
-                href="#intro"
-                onmouseover="allumerPhares()"
-                onmouseout="eteindrePhares()"
-                >Accueil</a
-              >
+              <a href="#intro">Accueil</a>
             </li>
             <li>
-              <a
-                href="#voitures"
-                onmouseover="allumerPhares()"
-                onmouseout="eteindrePhares()"
-                >Voitures</a
-              >
+              <a href="#voitures">Voitures</a>
             </li>
             <li>
-              <a
-                href="#vote"
-                onmouseover="allumerPhares()"
-                onmouseout="eteindrePhares()"
-                >Vote</a
-              >
+              <a href="#vote">Vote</a>
             </li>
           </ul>
-          <div
-            class="texte-bienvenue"
-            onmouseover="allumerPhares()"
-            onmouseout="eteindrePhares()"
-          >
+          <div class="texte-bienvenue">
             BIENVENUE
           </div>
 

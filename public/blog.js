@@ -1,12 +1,19 @@
 //------------Allumer les phares ou eteindre----------------
 
-function allumerPhares() {
-  document.querySelector(".fond-ecran").src = "images/lightOn.jpg";
-}
+document.addEventListener("DOMContentLoaded", function () {
+  const carLight = document.getElementById("car-light");
+  const elements = document.querySelectorAll(".links a, .texte-bienvenue");
 
-function eteindrePhares() {
-  document.querySelector(".fond-ecran").src = "images/lightOff.jpg";
-}
+  elements.forEach(function (element) {
+    element.addEventListener("mouseover", function () {
+      carLight.classList.add("light-on");
+    });
+
+    element.addEventListener("mouseout", function () {
+      carLight.classList.remove("light-on");
+    });
+  });
+});
 
 //-------------Navigation bouton burger---------------------
 
