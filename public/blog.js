@@ -1,11 +1,11 @@
 //------------Allumer les phares ou eteindre----------------
 
 function allumerPhares() {
-  document.querySelector(".fond-ecran").src = "images/lightOn2.png";
+  document.querySelector(".fond-ecran").src = "images/lightOn.png";
 }
 
 function eteindrePhares() {
-  document.querySelector(".fond-ecran").src = "images/lightOff2.png";
+  document.querySelector(".fond-ecran").src = "images/lightOff.png";
 }
 
 //-------------Navigation bouton burger---------------------
