@@ -1,17 +1,15 @@
 //------------Allumer les phares ou eteindre----------------
 
-document.addEventListener("DOMContentLoaded", function () {
-    const carLight = document.getElementById("car-light");
-    const elements = document.querySelectorAll(".links a, .texte-bienvenue");
+document.addEventListener("DOMContentLoaded", () => {
+    const light = document.getElementById("car-light");
+    if (!light) return;
 
-    elements.forEach(function (element) {
-        element.addEventListener("mouseover", function () {
-            carLight.classList.add("light-on");
-        });
+    const ON = "/images/lightOn.gif";
+    const OFF = "/images/lightOff.gif";
 
-        element.addEventListener("mouseout", function () {
-            carLight.classList.remove("light-on");
-        });
+    document.querySelectorAll(".links a, .texte-bienvenue").forEach((el) => {
+        el.addEventListener("mouseenter", () => (light.src = ON));
+        el.addEventListener("mouseleave", () => (light.src = OFF));
     });
 });
 
