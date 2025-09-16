@@ -21,14 +21,27 @@
             rel="stylesheet"
         />
 
-        {# css #}
+        {# CSS principal #}
         <link rel="stylesheet" href="{{ asset('css/blog.css') }}" />
 
         {% block stylesheets %}{% endblock %}
     </head>
 
     <body>
-        {% block body %}{% endblock %} {# js #}
+        {# Messages flash globaux (optionnels mais pratiques) #}
+        <div class="container mt-3" id="flash-messages">
+            {% for message in app.flashes('success') %}
+            <div class="alert alert-success" role="alert">{{ message }}</div>
+            {% endfor %} {% for message in app.flashes('error') %}
+            <div class="alert alert-danger" role="alert">{{ message }}</div>
+            {% endfor %} {% for message in app.flashes('warning') %}
+            <div class="alert alert-warning" role="alert">{{ message }}</div>
+            {% endfor %} {% for message in app.flashes('info') %}
+            <div class="alert alert-info" role="alert">{{ message }}</div>
+            {% endfor %}
+        </div>
+
+        {% block body %}{% endblock %} {# JS principal #}
         <script src="{{ asset('script/blog.js') }}"></script>
 
         {% block javascripts %}{% endblock %}

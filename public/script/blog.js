@@ -48,27 +48,85 @@ document.addEventListener("DOMContentLoaded", () => {
 function agrandirImage(image) {
     image.classList.toggle("agrandie");
 }
+window.agrandirImage = agrandirImage;
+// ------------------------------------------------------------
+// ------------------------------------------------------------
+// ------------------------------------------------------------
+// Vote asynchrone : message + CLASSEMENT SIMPLE
+// Requiert dans le template :
+//  - <form id="form-vote" data-endpoint="{{ path('app_vote_ajax') }}">
+//  - <div id="message-vote"></div>
+//  - <div id="classement-vote"><ol id="classement-list"></ol>...</div>
+// La route app_vote_ajax renvoie: { ok, message, total, items:[{label,votes}] } triés DESC
+// ------------------------------------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("form-vote");
+    const msgBox = document.getElementById("message-vote");
+    const wrap = document.getElementById("classement-vote");
+    const listEl = document.getElementById("classement-list");
+    const totalEl = document.getElementById("classement-total");
+    if (!form || !msgBox || !wrap || !listEl || !totalEl) return;
 
-//Utilisation d'AJAX pour envoyer les données du formulaire de vote sans recharger la page
+    const endpoint = form.dataset.endpoint || form.action;
 
-document
-    .getElementById("vote-form")
-    .addEventListener("submit", function (event) {
-        event.preventDefault(); // Empêche le comportement par défaut du formulaire
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-        var formData = new FormData(this); // Récupération des données du formulaire
+        msgBox.innerHTML = '<div class="alert alert-info">Envoi du vote…</div>';
+        const btn = form.querySelector('button[type="submit"]');
+        btn?.setAttribute("disabled", "disabled");
 
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    document.getElementById("results").innerHTML =
-                        xhr.responseText; // Affichage des résultats
-                } else {
-                    console.error("Une erreur est survenue.");
+        try {
+            const res = await fetch(endpoint, {
+                method: "POST",
+                body: new FormData(form),
+                headers: { "X-Requested-With": "XMLHttpRequest" },
+            });
+            const json = await res.json();
+            if (!res.ok || !json.ok) throw new Error(json.message || "Erreur");
+
+            // message
+            msgBox.innerHTML = `<div class="alert alert-success">${json.message}</div>`;
+
+            // classement
+            renderRanking(json.items || [], json.total || 0);
+
+            // auto-hide message
+            setTimeout(() => {
+                const a = msgBox.querySelector(".alert");
+                if (a) {
+                    a.style.transition = "opacity .3s";
+                    a.style.opacity = "0";
+                    setTimeout(() => (msgBox.innerHTML = ""), 300);
                 }
-            }
-        };
-        xhr.open("POST", "vote/vote.php", true);
-        xhr.send(formData);
+            }, 3000);
+        } catch (err) {
+            msgBox.innerHTML = `<div class="alert alert-danger">${
+                err.message || "Une erreur est survenue."
+            }</div>`;
+        } finally {
+            btn?.removeAttribute("disabled");
+        }
     });
+
+    function renderRanking(items, total) {
+        // items déjà triés côté serveur (votes DESC)
+        listEl.innerHTML = items
+            .map(
+                (it, idx) => `
+      <li class="list-group-item d-flex justify-content-between align-items-center ${
+          idx === 0 ? "active" : ""
+      }">
+        <span>${it.label}</span>
+        <span class="badge bg-secondary rounded-pill">${it.votes} vote${
+                    it.votes > 1 ? "s" : ""
+                }</span>
+      </li>
+    `
+            )
+            .join("");
+        totalEl.textContent = `${total} vote${total > 1 ? "s" : ""} au total`;
+        wrap.style.display = "block";
+        wrap.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+});
