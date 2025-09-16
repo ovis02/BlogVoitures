@@ -21,4 +21,4 @@ services:
     # 👉 Ajout : service MongoDB\Client pour injection dans les contrôleurs
     MongoDB\Client:
         arguments:
-            - "%env(resolve:MONGODB_DSN)%"
+            - "%env(resolve:MONGODB_URI)%"
