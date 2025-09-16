@@ -13,34 +13,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-//-------------Navigation bouton burger---------------------
-
+//------------- Navigation bouton burger ---------------------
 document.addEventListener("DOMContentLoaded", () => {
-    const logoBurgerButton = document.getElementById("logo-burger-button");
-    const verticalNavbar = document.getElementById("vertical-navbar");
-    const closeButton = document.getElementById("close-button");
+    const btn = document.getElementById("logo-burger-button"); // bouton ☰
+    const nav = document.getElementById("vertical-navbar"); // <nav id="vertical-navbar">
+    const close = document.getElementById("close-button"); // bouton ✕
 
-    let isNavbarVisible = false;
+    if (!btn || !nav || !close) return; // sécurité minimale
 
-    function openNavbar() {
-        verticalNavbar.style.display = "flex"; // Affiche la navbar
-        isNavbarVisible = true;
-    }
+    btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        nav.classList.toggle("open"); // le CSS mobile affiche .open { display:flex }
+    });
 
-    function closeNavbar() {
-        verticalNavbar.style.display = "none"; // Masque la navbar
-        isNavbarVisible = false;
-    }
-
-    closeButton.addEventListener("click", closeNavbar);
-
-    logoBurgerButton.addEventListener("click", (event) => {
-        event.preventDefault(); // Évitez le comportement par défaut du lien
-        if (!isNavbarVisible) {
-            openNavbar();
-        } else {
-            closeNavbar();
-        }
+    close.addEventListener("click", () => {
+        nav.classList.remove("open"); // ferme la barre
     });
 });
 
@@ -49,9 +36,9 @@ function agrandirImage(image) {
     image.classList.toggle("agrandie");
 }
 window.agrandirImage = agrandirImage;
+
 // ------------------------------------------------------------
-// ------------------------------------------------------------
-// asynchrone ultra simple
+// asynchrone + mongoDB + cookie
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("form-vote");
     const msgBox = document.getElementById("message-vote");

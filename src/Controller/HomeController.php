@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class HomeController extends AbstractController
 {
-    /** Les 6 choix proposés */
+   
     private const CARS = [
         'Nissan Skyline GT-R',
         'Toyota Supra',
@@ -169,7 +169,7 @@ final class HomeController extends AbstractController
             return $resp;
 
         } catch (\Throwable $e) {
-            // En prod, tu peux retirer "detail" si besoin
+           
             return $this->json(['ok' => false, 'message' => 'Erreur serveur', 'detail' => $e->getMessage()], 500);
         }
     }
