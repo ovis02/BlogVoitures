@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use MongoDB\Client;
 use MongoDB\Collection;
+use MongoDB\Database;
 use MongoDB\BSON\UTCDateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Cookie;
@@ -12,8 +13,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class HomeController extends AbstractController
+class HomeController extends AbstractController
 {
+    /** Les 6 choix proposés */
     private const CARS = [
         'Nissan Skyline GT-R',
         'Toyota Supra',
@@ -27,17 +29,51 @@ final class HomeController extends AbstractController
 
     public function __construct(private Client $mongo) {}
 
+    /* ---------- Helpers ENV -> DB / Collections (défauts pour le local) ---------- */
+
+    private function dbName(): string
+    {
+        return $_ENV['MONGODB_DB'] ?? 'blog_auto';
+    }
+
+    private function collVotesName(): string
+    {
+        return $_ENV['MONGODB_COLLECTION_VOTES'] ?? 'votes';
+    }
+
+    private function collVotersName(): string
+    {
+        return $_ENV['MONGODB_COLLECTION_VOTERS'] ?? 'voters';
+    }
+
+    private function db(): Database
+    {
+        return $this->mongo->selectDatabase($this->dbName());
+    }
+
+    private function votesColl(): Collection
+    {
+        return $this->db()->selectCollection($this->collVotesName());
+    }
+
+    private function votersColl(): Collection
+    {
+        return $this->db()->selectCollection($this->collVotersName());
+    }
+
+    /* ---------------------------------- Routes ---------------------------------- */
+
     #[Route('/', name: 'app_home', methods: ['GET','POST'])]
     public function index(Request $request): Response
     {
-        // GET: juste afficher la page (et poser le cookie si absent)
+        // GET : affiche la page et pose le cookie si absent
         if (!$request->isMethod('POST')) {
             $resp = $this->render('home/index.html.twig');
             $this->ensureVoterCookie($request, $resp);
             return $resp;
         }
 
-        // POST fallback (si JS désactivé)
+        // Fallback POST (si JS désactivé)
         $token = $request->request->get('_token');
         if (!$this->isCsrfTokenValid('vote', $token)) {
             $this->addFlash('error', 'Jeton CSRF invalide.');
@@ -50,23 +86,20 @@ final class HomeController extends AbstractController
             return $this->redirectToRoute('app_home', ['_fragment' => 'vote']);
         }
 
-        $db        = $this->mongo->selectDatabase('blog_auto');
-        $votesColl = $db->selectCollection('votes');
-        $voters    = $db->selectCollection('voters');
+        $votesColl = $this->votesColl();
+        $voters    = $this->votersColl();
 
-        // S’assure que l’index d’unicité existe (safe même si déjà créé)
+        // Index d’unicité “voterId”
         $voters->createIndex(['voterId' => 1], ['unique' => true]);
 
-        // Récupère/pose le voter_id (cookie)
         $voterId = $this->getOrCreateVoterId($request);
 
-        // Déjà voté ?
         if ($voters->findOne(['voterId' => $voterId])) {
             $this->addFlash('error', 'Vous avez déjà voté.');
             return $this->redirectToRoute('app_home', ['_fragment' => 'vote']);
         }
 
-        // Enregistre le vote + marque le votant comme “utilisé”
+        // Vote + marquage du votant
         $votesColl->updateOne(['car' => $selected], ['$inc' => ['votes' => 1]], ['upsert' => true]);
         $voters->insertOne([
             'voterId' => $voterId,
@@ -78,7 +111,6 @@ final class HomeController extends AbstractController
 
         $this->addFlash('success', 'Merci pour votre participation !');
 
-        // Pose le cookie si besoin au moment du redirect
         $resp = $this->redirectToRoute('app_home', ['_fragment' => 'vote']);
         $this->ensureVoterCookie($request, $resp);
         return $resp;
@@ -87,27 +119,27 @@ final class HomeController extends AbstractController
     #[Route('/vote/submit', name: 'app_vote_ajax', methods: ['POST'])]
     public function voteAjax(Request $request): JsonResponse
     {
-        $db        = $this->mongo->selectDatabase('blog_auto');
-        $votesColl = $db->selectCollection('votes');
-        $voters    = $db->selectCollection('voters');
+        $votesColl = $this->votesColl();
+        $voters    = $this->votersColl();
         $voters->createIndex(['voterId' => 1], ['unique' => true]);
 
+        // CSRF
         $token = $request->request->get('_token');
         if (!$this->isCsrfTokenValid('vote', $token)) {
             return $this->json(['ok' => false, 'message' => 'Jeton CSRF invalide.'], 400);
         }
 
+        // Choix
         $selected = $request->request->get('vote');
         if (!$selected) {
             return $this->json(['ok' => false, 'message' => 'Veuillez sélectionner une voiture.'], 400);
         }
 
+        // Voter ID (cookie)
         $voterId = $this->getOrCreateVoterId($request);
 
-        // déjà voté ?
         if ($voters->findOne(['voterId' => $voterId])) {
             $resp = $this->json(['ok' => false, 'message' => 'Vous avez déjà voté.'], 409);
-            // Pose le cookie au cas où il manquait
             $this->ensureVoterCookie($request, $resp);
             return $resp;
         }
@@ -134,54 +166,50 @@ final class HomeController extends AbstractController
         return $resp;
     }
 
+    /* --------------------------------- Utils ---------------------------------- */
+
     /** Classement simple : total + items triés par nb de votes décroissant */
     private function getRanking(Collection $votesColl): array
     {
-        // Récupère les comptes actuels
         $counts = [];
         foreach ($votesColl->find([]) as $doc) {
             $car = (string)($doc['car'] ?? '');
             $counts[$car] = (int)($doc['votes'] ?? 0);
         }
 
-        // Assure l’existence de toutes les voitures (0 si absentes)
         $items = [];
         $total = 0;
         foreach (self::CARS as $car) {
             $v = $counts[$car] ?? 0;
             $items[] = ['label' => $car, 'votes' => $v];
-            $total += $v;
+            $total  += $v;
         }
 
-        // Tri décroissant
         usort($items, fn ($a, $b) => $b['votes'] <=> $a['votes']);
 
         return ['total' => $total, 'items' => $items];
     }
 
-    /** Lit le cookie ou génère un ID anonyme si absent (non persistant tant qu’on ne l’ajoute pas à la réponse) */
+    /** Récupère le voter_id du cookie ou en génère un */
     private function getOrCreateVoterId(Request $request): string
     {
         $id = (string) $request->cookies->get(self::COOKIE_NAME, '');
-        if ($id !== '') {
-            return $id;
-        }
-        // ID aléatoire base16 (32 chars)
-        return bin2hex(random_bytes(16));
+        return $id !== '' ? $id : bin2hex(random_bytes(16));
     }
 
-    /** Pose le cookie dans la réponse si le navigateur n’en a pas encore */
+    /** Pose le cookie s’il n’existe pas encore */
     private function ensureVoterCookie(Request $request, Response $response): void
     {
         if ($request->cookies->has(self::COOKIE_NAME)) {
             return;
         }
         $id = $this->getOrCreateVoterId($request);
-        $cookie = Cookie::create(self::COOKIE_NAME, $id, (new \DateTime('+1 year')))
+        $cookie = Cookie::create(self::COOKIE_NAME, $id, new \DateTime('+1 year'))
             ->withHttpOnly()
-            ->withSecure(false) // passe à true si HTTPS
+            ->withSecure($request->isSecure()) // true si HTTPS (Heroku)
             ->withPath('/')
             ->withSameSite('Lax');
+
         $response->headers->setCookie($cookie);
     }
 }
