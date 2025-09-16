@@ -19,8 +19,6 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
     # 👉 Ajout : service MongoDB\Client pour injection dans les contrôleurs
-services:
     MongoDB\Client:
         arguments:
-            - '%env(string:MONGODB_DSN)%'
-
+            - "%env(resolve:MONGODB_DSN)%"
