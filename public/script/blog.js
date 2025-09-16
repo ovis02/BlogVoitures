@@ -50,9 +50,7 @@ function agrandirImage(image) {
 }
 window.agrandirImage = agrandirImage;
 // ------------------------------------------------------------
-// ------------------------------------------------------------
-// ------------------------------------------------------------
-// Vote asynchrone : message + CLASSEMENT SIMPLE
+// Vote asynchrone : message + CLASSEMENT SIMPLE (robuste JSON)
 // Requiert dans le template :
 //  - <form id="form-vote" data-endpoint="{{ path('app_vote_ajax') }}">
 //  - <div id="message-vote"></div>
@@ -80,12 +78,32 @@ document.addEventListener("DOMContentLoaded", () => {
             const res = await fetch(endpoint, {
                 method: "POST",
                 body: new FormData(form),
-                headers: { "X-Requested-With": "XMLHttpRequest" },
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest",
+                    Accept: "application/json",
+                },
+                redirect: "follow",
             });
-            const json = await res.json();
-            if (!res.ok || !json.ok) throw new Error(json.message || "Erreur");
 
-            // message
+            // Vérifie le Content-Type AVANT d'appeler res.json()
+            const ct = res.headers.get("content-type") || "";
+            if (!ct.includes("application/json")) {
+                const text = await res.text();
+                // Affiche les 200 premiers caractères pour debug (souvent une page HTML d'erreur)
+                throw new Error(
+                    `Réponse non-JSON (HTTP ${res.status}) : ${text.slice(
+                        0,
+                        200
+                    )}`
+                );
+            }
+
+            const json = await res.json();
+            if (!res.ok || !json.ok) {
+                throw new Error(json.message || `Erreur HTTP ${res.status}`);
+            }
+
+            // message succès
             msgBox.innerHTML = `<div class="alert alert-success">${json.message}</div>`;
 
             // classement
@@ -102,8 +120,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 3000);
         } catch (err) {
             msgBox.innerHTML = `<div class="alert alert-danger">${
-                err.message || "Une erreur est survenue."
+                err && err.message ? err.message : "Une erreur est survenue."
             }</div>`;
+            console.error(err);
         } finally {
             btn?.removeAttribute("disabled");
         }
@@ -125,6 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
     `
             )
             .join("");
+
         totalEl.textContent = `${total} vote${total > 1 ? "s" : ""} au total`;
         wrap.style.display = "block";
         wrap.scrollIntoView({ behavior: "smooth", block: "center" });
